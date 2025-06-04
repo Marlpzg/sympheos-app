@@ -4,8 +4,8 @@ import React, { memo } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { systemSettingsStore } from 'capture-core/metaDataMemoryStores';
 import { FeedbackBar } from 'capture-core/components/FeedbackBar';
+import Sidebar from 'commons/Sidebar/Sidebar';
 import { AppPagesLoader } from './AppPagesLoader.component';
-import Sidebar from '../../core_modules/commons/Sidebar/Sidebar';
 
 const getStyles = theme => ({
     app: {

@@ -20,6 +20,7 @@ import { unlink, symlink } from 'fs/promises';
     const captureCoreUtilsPromise = createSymlink('capture-core-utils');
     const captureUIPromise = createSymlink('capture-ui');
     const captureCorePromise = createSymlink('capture-core');
+    const commonsPromise = createSymlink('commons');
 
-    return Promise.all([captureCoreUtilsPromise, captureUIPromise, captureCorePromise]);
+    return Promise.all([captureCoreUtilsPromise, captureUIPromise, captureCorePromise, commonsPromise]);
 })();
