@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { systemSettingsStore } from 'capture-core/metaDataMemoryStores';
 import { FeedbackBar } from 'capture-core/components/FeedbackBar';
 import { AppPagesLoader } from './AppPagesLoader.component';
+import Sidebar from '../../core_modules/commons/Sidebar/Sidebar';
 
 const getStyles = theme => ({
     app: {
@@ -21,12 +22,29 @@ type Props = {
 
 const Index = ({ classes }: Props) => (
     <div
-        className={classes.app}
-        dir={systemSettingsStore.get().dir}
+        style={{
+            display: 'flex',
+            height: 'calc(100svh - 48px)',
+            maxHeight: 'calc(100svh - 48px)',
+            width: '100%',
+            overflow: 'hidden',
+        }}
     >
-        <AppPagesLoader />
-        <FeedbackBar />
+        <Sidebar />
+        <div
+            className={classes.app}
+            dir={systemSettingsStore.get().dir}
+            style={{
+                width: '100%',
+                overflow: 'hidden',
+            }}
+        >
+            <AppPagesLoader />
+            <FeedbackBar />
+        </div>
+
     </div>
+
 );
 Index.displayName = 'AppContents';
 

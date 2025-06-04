@@ -50,7 +50,7 @@ const ProgramSelectorPlain = ({
     const [programsArray, setProgramsArray] = useState<Array<Program>>([]);
     const selectedProgram = selectedProgramId ? programCollection.get(selectedProgramId) : null;
     const programOptions = getOptions(selectedOrgUnitId, programsArray);
-    const isMenuDisabled = !handleClickProgram;
+    const isMenuDisabled = true;
 
     useEffect(() => {
         setProgramsArray(Array.from(programCollection.values()));
@@ -86,7 +86,6 @@ const ProgramSelectorPlain = ({
                 open={open}
                 setOpen={openSelectorBarItem => (isMenuDisabled ? null : setOpen(openSelectorBarItem))}
                 displayOnly={isMenuDisabled}
-                onClearSelectionClick={() => onResetProgramId(resetProgramIdBase())}
                 dataTest="program-selector-container"
             >
                 <div className={classes.selectBarMenu}>
