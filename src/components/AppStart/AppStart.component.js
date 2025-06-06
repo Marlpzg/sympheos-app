@@ -12,14 +12,23 @@ import { addBeforeUnloadEventListener } from './unload';
 import { CacheExpired } from './CacheExpired.component';
 import { JSSProviderShell } from './JSSProviderShell.component';
 import { theme } from '../../styles/uiTheme';
+import { useDataStore } from '../../hooks/useDataStore';
 
 export const AppStart = () => {
     const [ready, setReadyStatus] = useState(false);
     const [cacheExpired, setCacheExpired] = useState(false);
+    const { storeMutation, storeQuery } = useDataStore({ key: 'settings' });
 
-    const store: {current: Object} = useRef();
+    const store: { current: Object } = useRef();
 
     const handleRunApp = useCallback((storeArg: PlainReduxStore) => {
+        storeQuery.refetch({ key: 'settings' }).then((data) => {
+            if (!data) {
+                storeMutation.mutate({
+                    key: 'settings', data: {},
+                });
+            }
+        });
         store.current = storeArg;
         setReadyStatus(true);
         storeArg.dispatch(loadApp());
@@ -27,6 +36,8 @@ export const AppStart = () => {
     }, [
         setReadyStatus,
         store,
+        storeQuery,
+        storeMutation,
     ]);
 
     const handleCacheExpired = useCallback(() => {

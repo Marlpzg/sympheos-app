@@ -16,6 +16,7 @@ export const AppPages = () => (
         <ReactQueryDevtools />
         <Switch>
             <Route path="/dashboard/:dashboardId" component={() => (<div><h1>Dashboard Here</h1></div>)} />
+            <Route path="/settings" component={() => (<div><h1>Settings Here</h1></div>)} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/new" component={NewPage} />

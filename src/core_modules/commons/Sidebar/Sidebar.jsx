@@ -36,7 +36,7 @@ const buildItemComponent = (location, isCollapsed, item) => {
     const isHeader = item?.children?.length > 0;
     const padding = isHeader ? '0.5rem' : '0.25rem';
 
-    if (item.content && item.link) {
+    if (item.link) {
         return (<Link
             to={item.link}
             style={{
