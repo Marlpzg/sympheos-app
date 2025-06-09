@@ -1907,6 +1907,39 @@ msgstr "The operation was successful"
 msgid "There was a problem running the selected operation"
 msgstr "There was a problem running the selected operation"
 
+msgid "Update Location"
+msgstr "Update Location"
+
+msgid "Update Profile"
+msgstr "Update Profile"
+
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
+
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Request action"
+msgstr "Request action"
+
+msgid "TODO"
+msgstr "TODO"
+
+msgid "Run!"
+msgstr "Run!"
+
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"
 
