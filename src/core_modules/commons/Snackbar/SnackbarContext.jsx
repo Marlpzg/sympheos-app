@@ -8,9 +8,13 @@ export type Snackbar = {
     duration?: number;
 };
 
-export const SnackbarContext = createContext(undefined);
+export type ISnackbarContext = {
+    showSnackbar: (snackbar: Snackbar) => void;
+}
 
-export const useSnackbar = () => {
+export const SnackbarContext = createContext<ISnackbarContext | null>(null);
+
+export const useSnackbar = (): ISnackbarContext => {
     const context = useContext(SnackbarContext);
     if (!context) {
         throw new Error('useSnackbar must be used within a SnackbarProvider');
