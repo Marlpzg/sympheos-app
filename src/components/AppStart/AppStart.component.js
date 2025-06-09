@@ -13,6 +13,7 @@ import { CacheExpired } from './CacheExpired.component';
 import { JSSProviderShell } from './JSSProviderShell.component';
 import { theme } from '../../styles/uiTheme';
 import { useDataStore } from '../../hooks/useDataStore';
+import { SnackbarProvider } from '../../core_modules/commons/Snackbar/SnackbarProvider';
 
 export const AppStart = () => {
     const [ready, setReadyStatus] = useState(false);
@@ -58,25 +59,27 @@ export const AppStart = () => {
 
     return (
         <React.Fragment>
-            <CssBaseline />
-            <JSSProviderShell>
-                <MuiThemeProvider
-                    theme={theme}
-                >
-                    <Router>
-                        {
-                            ready ?
-                                <App
-                                    store={store.current}
-                                /> :
-                                <AppLoader
-                                    onRunApp={handleRunApp}
-                                    onCacheExpired={handleCacheExpired}
-                                />
-                        }
-                    </Router>
-                </MuiThemeProvider>
-            </JSSProviderShell>
+            <SnackbarProvider>
+                <CssBaseline />
+                <JSSProviderShell>
+                    <MuiThemeProvider
+                        theme={theme}
+                    >
+                        <Router>
+                            {
+                                ready ?
+                                    <App
+                                        store={store.current}
+                                    /> :
+                                    <AppLoader
+                                        onRunApp={handleRunApp}
+                                        onCacheExpired={handleCacheExpired}
+                                    />
+                            }
+                        </Router>
+                    </MuiThemeProvider>
+                </JSSProviderShell>
+            </SnackbarProvider>
         </React.Fragment>
     );
 };
