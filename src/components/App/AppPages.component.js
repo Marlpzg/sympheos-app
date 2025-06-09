@@ -29,6 +29,14 @@ const DashboardWrapper = () => {
     />);
 };
 
+const ParamRoute = (props) => {
+    const { search } = useLocation();
+    const urlQuery = new URLSearchParams(search);
+    const paramsSize = [...urlQuery.keys()].length;
+
+    return paramsSize > 0 ? <Route {...props} /> : <Redirect to="/dashboard/overview" />;
+};
+
 export const AppPages = () => (
     <>
         <ReactQueryDevtools />
