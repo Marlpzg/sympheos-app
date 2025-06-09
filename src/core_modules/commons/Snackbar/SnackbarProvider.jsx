@@ -1,10 +1,16 @@
 // @flow
 import React, { useState } from 'react';
 import { AlertBar, AlertStack } from '@dhis2/ui';
-import { Snackbar, SnackbarContext } from 'commons/Snackbar/SnackbarContext';
+import { SnackbarContext } from 'commons/Snackbar/SnackbarContext';
+import type { Node, ComponentType } from 'react';
+import type { Snackbar } from 'commons/Snackbar/SnackbarContext';
 
-export const SnackbarProvider = ({ children }) => {
-    const [snackbars, setSnackbars] = useState([]);
+type SnackbarProviderProps = {
+    children: Node;
+};
+
+export const SnackbarProvider: ComponentType<SnackbarProviderProps> = ({ children }) => {
+    const [snackbars, setSnackbars] = useState<Array<Snackbar | null>>([]);
 
     const showSnackbar = (snackbar) => {
         setSnackbars([...snackbars, snackbar]);
@@ -12,7 +18,7 @@ export const SnackbarProvider = ({ children }) => {
 
     const handleClose = (index) => {
         const newSnackbars = [...snackbars];
-        newSnackbars[index] = undefined;
+        newSnackbars[index] = null;
         setSnackbars(newSnackbars);
     };
 
@@ -20,7 +26,7 @@ export const SnackbarProvider = ({ children }) => {
         <SnackbarContext.Provider value={{ showSnackbar }}>
             {children}
             <AlertStack className="flex-horizontal justify-start">
-                {snackbars.map((snackbar: Snackbar, index) => {
+                {snackbars.map((snackbar: (Snackbar | null), index) => {
                     if (snackbar) {
                         return (<AlertBar
                             // eslint-disable-next-line react/no-array-index-key
