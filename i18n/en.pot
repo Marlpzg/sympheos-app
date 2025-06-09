@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-04-09T14:11:50.346Z\n"
-"PO-Revision-Date: 2025-04-09T14:11:50.346Z\n"
+"POT-Creation-Date: 2025-06-09T18:15:59.000Z\n"
+"PO-Revision-Date: 2025-06-09T18:15:59.001Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1862,6 +1862,39 @@ msgstr ""
 
 msgid "An error occurred while deleting the records"
 msgstr "An error occurred while deleting the records"
+
+msgid "Update Location"
+msgstr "Update Location"
+
+msgid "Update Profile"
+msgstr "Update Profile"
+
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
+
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Request action"
+msgstr "Request action"
+
+msgid "TODO"
+msgstr "TODO"
+
+msgid "Run!"
+msgstr "Run!"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"

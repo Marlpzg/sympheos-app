@@ -10,7 +10,7 @@ import { StageEventListPage } from 'capture-core/components/Pages/StageEvent';
 import { EnrollmentEditEventPage } from 'capture-core/components/Pages/EnrollmentEditEvent';
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { Settings } from 'sympheos-core/settings-page/Settings';
+import { Settings } from 'sympheos-core/settings-page/Settings.jsx';
 
 export const AppPages = () => (
     <>
