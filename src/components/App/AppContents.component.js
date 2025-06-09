@@ -36,7 +36,8 @@ const Index = ({ classes }: Props) => (
             dir={systemSettingsStore.get().dir}
             style={{
                 width: '100%',
-                overflow: 'hidden',
+                overflowX: 'hidden',
+                overflowY: 'auto',
             }}
         >
             <AppPagesLoader />

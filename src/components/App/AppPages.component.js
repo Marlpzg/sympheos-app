@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ViewEventPage } from 'capture-core/components/Pages/ViewEvent';
 import { MainPage } from 'capture-core/components/Pages/MainPage';
 import { SearchPage } from 'capture-core/components/Pages/Search';
@@ -10,13 +10,14 @@ import { StageEventListPage } from 'capture-core/components/Pages/StageEvent';
 import { EnrollmentEditEventPage } from 'capture-core/components/Pages/EnrollmentEditEvent';
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Settings } from 'sympheos-core/settings-page/Settings'
 
 export const AppPages = () => (
     <>
         <ReactQueryDevtools />
         <Switch>
             <Route path="/dashboard/:dashboardId" component={() => (<div><h1>Dashboard Here</h1></div>)} />
-            <Route path="/settings" component={() => (<div><h1>Settings Here</h1></div>)} />
+            <Route path="/settings" component={Settings} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/new" component={NewPage} />
@@ -25,7 +26,9 @@ export const AppPages = () => (
             <Route path="/enrollmentEventNew" component={EnrollmentAddEventPage} />
             <Route path="/enrollment" component={EnrollmentPage} />
             <Route path="/:keys" component={MainPage} />
-            <Route path="/" component={MainPage} />
+            <Route path="/" component={MainPage}>
+                <Redirect to="/dashboard/overview" />
+            </Route>
         </Switch>
     </>
 );

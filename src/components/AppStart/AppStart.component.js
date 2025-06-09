@@ -25,7 +25,13 @@ export const AppStart = () => {
         storeQuery.refetch({ key: 'settings' }).then((data) => {
             if (!data) {
                 storeMutation.mutate({
-                    key: 'settings', data: {},
+                    key: 'settings',
+                    data: {
+                        optionSets: {
+                            defaultProfile: 'WT3MuPwNwwh',
+                            instanceType: 'gVUs8MP8PBG',
+                        },
+                    },
                 });
             }
         });

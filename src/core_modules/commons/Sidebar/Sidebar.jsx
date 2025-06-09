@@ -112,7 +112,7 @@ const Sidebar = () => {
             <ul style={{ listStyle: 'none', padding: 0 }}>
                 {menu.map(item => (
                     <li
-                        key={item.key}
+                        key={item.id || item.title}
                         style={{
                             marginBottom: '0.5rem',
                             cursor: 'pointer',
@@ -124,7 +124,7 @@ const Sidebar = () => {
                             <ul className={'list_sidebar'}>
                                 {item.children.map(child => (
                                     <li
-                                        key={child.key}
+                                        key={child.id || child.title}
                                         style={{
                                             cursor: 'pointer',
                                         }}

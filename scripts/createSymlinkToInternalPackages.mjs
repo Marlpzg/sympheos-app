@@ -21,6 +21,12 @@ import { unlink, symlink } from 'fs/promises';
     const captureUIPromise = createSymlink('capture-ui');
     const captureCorePromise = createSymlink('capture-core');
     const commonsPromise = createSymlink('commons');
+    const sympheosCorePromise = createSymlink('sympheos-core');
 
-    return Promise.all([captureCoreUtilsPromise, captureUIPromise, captureCorePromise, commonsPromise]);
+    return Promise.all([
+        captureCoreUtilsPromise,
+        captureUIPromise,
+        captureCorePromise,
+        commonsPromise,
+        sympheosCorePromise]);
 })();

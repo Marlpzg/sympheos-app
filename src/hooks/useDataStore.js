@@ -28,7 +28,7 @@ export function useDataStore({ key, lazyUpdate = true, lazyGet = true }) {
         lazy: lazyUpdate,
     });
 
-    const { loading, errorQuery, dataQuery, refetch } = useDataQuery(dsQuery, {
+    const { loading, error: errorQuery, data: dataQuery, refetch } = useDataQuery(dsQuery, {
         variables: { key },
         // eslint-disable-next-line no-console
         onError: err => console.error(err),
