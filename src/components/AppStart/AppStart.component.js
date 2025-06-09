@@ -14,6 +14,7 @@ import { CacheExpired } from './CacheExpired.component';
 import { JSSProviderShell } from './JSSProviderShell.component';
 import { theme } from '../../styles/uiTheme';
 import { useDataStore } from '../../hooks/useDataStore';
+import { SnackbarProvider } from '../../core_modules/commons/Snackbar/SnackbarProvider';
 
 export const AppStart = () => {
     const [ready, setReadyStatus] = useState(false);
