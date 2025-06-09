@@ -3,6 +3,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { SnackbarProvider } from 'commons/Snackbar/SnackbarProvider';
 // eslint-disable-next-line import/extensions
 import 'typeface-roboto';
 import { AppLoader } from '../AppLoader';
@@ -58,25 +59,27 @@ export const AppStart = () => {
 
     return (
         <React.Fragment>
-            <CssBaseline />
-            <JSSProviderShell>
-                <MuiThemeProvider
-                    theme={theme}
-                >
-                    <Router>
-                        {
-                            ready ?
-                                <App
-                                    store={store.current}
-                                /> :
-                                <AppLoader
-                                    onRunApp={handleRunApp}
-                                    onCacheExpired={handleCacheExpired}
-                                />
-                        }
-                    </Router>
-                </MuiThemeProvider>
-            </JSSProviderShell>
+            <SnackbarProvider>
+                <CssBaseline />
+                <JSSProviderShell>
+                    <MuiThemeProvider
+                        theme={theme}
+                    >
+                        <Router>
+                            {
+                                ready ?
+                                    <App
+                                        store={store.current}
+                                    /> :
+                                    <AppLoader
+                                        onRunApp={handleRunApp}
+                                        onCacheExpired={handleCacheExpired}
+                                    />
+                            }
+                        </Router>
+                    </MuiThemeProvider>
+                </JSSProviderShell>
+            </SnackbarProvider>
         </React.Fragment>
     );
 };
