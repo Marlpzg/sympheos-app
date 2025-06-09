@@ -1,7 +1,7 @@
 // @flow
 import React, { useState } from 'react';
 import { AlertBar, AlertStack } from '@dhis2/ui';
-import { Snackbar as SnackType, SnackbarContext } from './SnackbarContext';
+import { Snackbar, SnackbarContext } from 'commons/Snackbar/SnackbarContext';
 
 export const SnackbarProvider = ({ children }) => {
     const [snackbars, setSnackbars] = useState([]);

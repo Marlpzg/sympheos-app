@@ -3,6 +3,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { SnackbarProvider } from 'commons/Snackbar/SnackbarProvider';
 // eslint-disable-next-line import/extensions
 import 'typeface-roboto';
 import { AppLoader } from '../AppLoader';
@@ -13,7 +14,6 @@ import { CacheExpired } from './CacheExpired.component';
 import { JSSProviderShell } from './JSSProviderShell.component';
 import { theme } from '../../styles/uiTheme';
 import { useDataStore } from '../../hooks/useDataStore';
-import { SnackbarProvider } from '../../core_modules/commons/Snackbar/SnackbarProvider';
 
 export const AppStart = () => {
     const [ready, setReadyStatus] = useState(false);
