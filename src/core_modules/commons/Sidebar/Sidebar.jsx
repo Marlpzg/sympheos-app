@@ -32,8 +32,7 @@ const buildMenuItemContent = (item, isCollapsed) => {
     </>);
 };
 
-const buildItemComponent = (location, isCollapsed, item) => {
-    const isHeader = item?.children?.length > 0;
+const buildItemComponent = ({ location, isCollapsed, item, isHeader = true }) => {
     const padding = isHeader ? '0.5rem' : '0.25rem';
 
     if (item.link) {
@@ -118,7 +117,7 @@ const Sidebar = () => {
                             cursor: 'pointer',
                         }}
                     >
-                        {buildItemComponent(location, isCollapsed, item)}
+                        {buildItemComponent({ location, isCollapsed, item })}
 
                         {!isCollapsed && item.children && (
                             <ul className={'list_sidebar'}>
@@ -129,7 +128,7 @@ const Sidebar = () => {
                                             cursor: 'pointer',
                                         }}
                                     >
-                                        {buildItemComponent(location, isCollapsed, child)}
+                                        {buildItemComponent({ location, isCollapsed, item: child, isHeader: false })}
                                     </li>
                                 ))}
                             </ul>
