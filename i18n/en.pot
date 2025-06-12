@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-09T18:15:59.000Z\n"
-"PO-Revision-Date: 2025-06-09T18:15:59.001Z\n"
+"POT-Creation-Date: 2025-06-12T01:08:15.751Z\n"
+"PO-Revision-Date: 2025-06-12T01:08:15.751Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2098,6 +2098,12 @@ msgstr "Page {{currentPage}}"
 
 msgid "Area on map saved"
 msgstr "Area on map saved"
+
+msgid "Load dashboard failed"
+msgstr "Load dashboard failed"
+
+msgid "This dashboard could not be loaded. Please try again later."
+msgstr "This dashboard could not be loaded. Please try again later."
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"
