@@ -11,6 +11,7 @@ import { EnrollmentEditEventPage } from 'capture-core/components/Pages/Enrollmen
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Settings } from 'sympheos-core/settings-page/Settings';
+import DashboardContainer from 'sympheos-core/dashboard/Dashboard';
 
 const ParamRoute = (props) => {
     const { search } = useLocation();
@@ -24,7 +25,14 @@ export const AppPages = () => (
     <>
         <ReactQueryDevtools />
         <Switch>
-            <Route path="/dashboard/:dashboardId" component={() => (<div><h1>Dashboard Here</h1></div>)} />
+            <Route
+                path="/dashboard/:dashboardId"
+                component={() => (
+                    <DashboardContainer
+                        supersetEmbedId={''}
+                    />
+                )}
+            />
             <Route path="/settings" component={Settings} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
