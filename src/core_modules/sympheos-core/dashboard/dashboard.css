@@ -1,0 +1,118 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 64px);
+    width: 100%;
+    background-color: #f4f6f8;
+}
+
+.empty {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--colors-grey600);
+}
+
+.title-bar {
+    display: flex;
+    font-size: 21px;
+    font-weight: 500;
+    align-items: center;
+    position: sticky;
+
+    padding-top: var(--spacers-dp12);
+    padding-bottom: var(--spacers-dp8);
+    padding-left: var(--spacers-dp16);
+    padding-right: var(--spacers-dp16);
+}
+
+.actions-bar {
+    display: flex;
+    margin-left: var(--spacers-dp16);
+}
+
+.dashboard-frame {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-frame iframe {
+    width: 100%;
+    border: none;
+}
+
+.hide {
+    display: none;
+}
+
+.dashboard-bar {
+    background: var(--colors-white);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 6px 3px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: auto;
+    padding-left: var(--spacers-dp16);
+    padding-right: var(--spacers-dp16);
+    padding-top: var(--spacers-dp16);
+    padding-bottom: var(--spacers-dp8);
+}
+
+.chips-controls {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacers-dp16);
+}
+
+.chips {
+    display: flex;
+    width: calc(100% - 300px);
+    flex-wrap: wrap;
+}
+
+.add-dashboard{
+    padding-right: var(--spacers-dp8);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--colors-grey400);
+    width: 200px;
+}
+
+.search-icon {
+    margin-right: var(--spacers-dp4);
+}
+
+.search-field {
+    flex-grow: 1;
+}
+
+.search-field > input {
+    width: 100%;
+    border: none;
+}
+
+.search-field > input:focus {
+    outline: 0;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.modal-content {
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+.noticeContainer {
+    margin: var(--spacers-dp16);
+}
+
+.pt-16 {
+    padding-top: var(--spacers-dp16);
+}
