@@ -11,6 +11,7 @@ import {
     MetadataAutoSelectInitializer,
 } from '../../core_modules/capture-core/components/MetadataAutoSelectInitializer';
 
+import { AppProvider } from '../../context';
 
 type Props = {
     store: ReduxStore,
@@ -18,14 +19,16 @@ type Props = {
 
 export const App = ({ store }: Props) => (
     <React.Fragment>
-        <Provider
-            store={store}
-        >
-            <MetadataAutoSelectInitializer>
-                <RulesEngineVerboseInitializer>
-                    <AppContents />
-                </RulesEngineVerboseInitializer>
-            </MetadataAutoSelectInitializer>
-        </Provider>
+        <AppProvider>
+            <Provider
+                store={store}
+            >
+                <MetadataAutoSelectInitializer>
+                    <RulesEngineVerboseInitializer>
+                        <AppContents />
+                    </RulesEngineVerboseInitializer>
+                </MetadataAutoSelectInitializer>
+            </Provider>
+        </AppProvider>
     </React.Fragment>
 );

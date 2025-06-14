@@ -29,7 +29,7 @@ export const AppPages = () => (
                 path="/dashboard/:dashboardId"
                 component={() => (
                     <DashboardContainer
-                        supersetEmbedId={''}
+                        dashboardId={'SH6LR4Whlho'}
                     />
                 )}
             />

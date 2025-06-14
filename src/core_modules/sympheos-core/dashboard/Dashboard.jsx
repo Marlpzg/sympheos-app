@@ -5,10 +5,13 @@ import { embedDashboard } from '@superset-ui/embedded-sdk';
 import { Center, CircularLoader } from '@dhis2/ui';
 import Notice from 'sympheos-core/dashboard/Notice';
 
-import { DashboardStyles } from 'sympheos-core/dashboard/dashboardStyles';
+import 'sympheos-core/dashboard/dashboard.css';
+
+import { apiFetchGuestToken, apiFetchDashboards } from './../../../api';
+import { useAppContext } from './../../../hooks/useAppContext';
 
 const DashboardContainer = ({
-    supersetEmbedId,
+    dashboardId,
     options = {
         hideChartControls: false,
         expandFilters: false,
@@ -16,6 +19,10 @@ const DashboardContainer = ({
     },
 }) => {
     const dashboardFrame = useRef(null);
+    const {
+        baseUrl,
+        systemInfo,
+    } = useAppContext();
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -28,7 +35,7 @@ const DashboardContainer = ({
     };
 
     useEffect(() => {
-        if (!supersetEmbedId) {
+        if (!dashboardId) {
             setError('No active dashboard to display');
             setLoading(false);
             return;
@@ -39,12 +46,24 @@ const DashboardContainer = ({
             setError(null);
             unmount();
 
-            if (dashboardFrame?.current) {
+            const data = await apiFetchGuestToken(dashboardId, { baseUrl });
+            const dashboards = await apiFetchDashboards({ baseUrl });
+
+            const currentDashboard = dashboards?.dashboards?.find(d => d.id === dashboardId);
+
+            if (data && currentDashboard && systemInfo && dashboardFrame?.current) {
+                if (data?.token === undefined) {
+                    setError(data?.message);
+                    setLoading(false);
+
+                    return;
+                }
+
                 embedDashboard({
-                    id: supersetEmbedId,
-                    supersetDomain: 'https://analytics.northshore.baosystems.com',
+                    id: currentDashboard?.supersetEmbedId,
+                    supersetDomain: systemInfo?.supersetBaseUrl,
                     mountPoint: dashboardFrame.current,
-                    fetchGuestToken: () => '',
+                    fetchGuestToken: () => data?.token,
                     dashboardUiConfig: {
                         hideTitle: true,
                         hideTab: true,
@@ -55,8 +74,6 @@ const DashboardContainer = ({
                         },
                     },
                     debug: true,
-                }).catch((err) => {
-                    console.error('Error embedding dashboard:', err);
                 });
 
                 setLoading(false);
@@ -64,10 +81,10 @@ const DashboardContainer = ({
         };
 
         renderDashboard();
-    }, [dashboardFrame, supersetEmbedId, options]);
+    }, [dashboardFrame, dashboardId, systemInfo]);
 
     return (
-        <div style={DashboardStyles.dashboardContainer}>
+        <div className="dashboard-container">
             <ErrorBoundary
                 fallbackRender={({ error: myError }) => (
                     <Notice
@@ -91,7 +108,7 @@ const DashboardContainer = ({
                 ) : null}
 
                 <div
-                    style={!loading ? DashboardStyles.dashboardFrame : DashboardStyles.hide}
+                    className={!loading ? 'dashboard-frame' : 'hide'}
                     ref={dashboardFrame}
                 />
 
