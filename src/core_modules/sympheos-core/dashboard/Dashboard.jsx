@@ -9,9 +9,10 @@ import 'sympheos-core/dashboard/dashboard.css';
 
 import { apiFetchGuestToken, apiFetchDashboards } from './../../../api';
 import { useAppContext } from './../../../hooks/useAppContext';
+import { useDataStore } from '../../../hooks/useDataStore';
 
 const DashboardContainer = ({
-    dashboardId,
+    dashboardKey,
     options = {
         hideChartControls: false,
         expandFilters: false,
@@ -24,20 +25,35 @@ const DashboardContainer = ({
         systemInfo,
     } = useAppContext();
 
+    const { storeQuery } = useDataStore({ key: 'settings', lazyGet: false });
+
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    /**
-     * Unmount current dashboard.
-     */
     const unmount = () => {
         dashboardFrame?.current?.replaceChildren();
     };
 
+    const handleError = (errorMsg) => {
+        setError(i18n.t(errorMsg));
+        setLoading(false);
+        unmount();
+    };
+
     useEffect(() => {
+        if (!dashboardKey) {
+            handleError('No active dashboard to display');
+            return;
+        }
+
+        if (!storeQuery?.data || !systemInfo) {
+            return;
+        }
+
+        const dashboardId = storeQuery?.data?.results?.dashboardKeys?.[dashboardKey];
+
         if (!dashboardId) {
-            setError('No active dashboard to display');
-            setLoading(false);
+            handleError('Dashboard not found');
             return;
         }
 
@@ -51,11 +67,9 @@ const DashboardContainer = ({
 
             const currentDashboard = dashboards?.dashboards?.find(d => d.id === dashboardId);
 
-            if (data && currentDashboard && systemInfo && dashboardFrame?.current) {
+            if (data && currentDashboard && dashboardFrame?.current) {
                 if (data?.token === undefined) {
-                    setError(data?.message);
-                    setLoading(false);
-
+                    handleError(data?.message);
                     return;
                 }
 
@@ -77,19 +91,26 @@ const DashboardContainer = ({
                 });
 
                 setLoading(false);
+            } else if (data?.status !== 200 || dashboards?.status !== 200) {
+                handleError('Failed to fetch dashboard data');
+            } else {
+                handleError('Dashboard not found');
             }
         };
 
         renderDashboard();
-    }, [dashboardFrame, dashboardId, systemInfo]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dashboardFrame, dashboardKey, systemInfo, storeQuery.data]);
 
     return (
         <div className="dashboard-container">
             <ErrorBoundary
-                fallbackRender={({ error: myError }) => (
+                fallbackRender={({ error: fallbackError }) => (
                     <Notice
                         title={i18n.t('Load dashboard failed')}
-                        message={`${i18n.t('This dashboard could not be loaded. Please try again later.')} ${myError}`}
+                        message={
+                            `${i18n.t('This dashboard could not be loaded. Please try again later.')} ${fallbackError}`
+                        }
                     />
                 )}
             >
