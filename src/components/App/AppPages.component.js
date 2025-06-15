@@ -34,12 +34,8 @@ export const AppPages = () => (
         <ReactQueryDevtools />
         <Switch>
             <Route
-                path="/dashboard/:dashboardId"
-                component={() => (
-                    <DashboardContainer
-                        dashboardId={'SH6LR4Whlho'}
-                    />
-                )}
+                path="/dashboard/:dashboardKey"
+                component={DashboardWrapper}
             />
             <Route path="/settings" component={Settings} />
             <Route path="/viewEvent" component={ViewEventPage} />
