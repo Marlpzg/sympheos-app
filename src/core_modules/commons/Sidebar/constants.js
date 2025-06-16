@@ -1,8 +1,8 @@
 const LinkTypes = {
-    CAPTURE: 'Capture',
-    SUPERSET: 'Superset',
-    REDIRECT: 'Redirect',
-    NAVIGATE: 'Navigate',
+    CAPTURE: 'CAPTURE',
+    SUPERSET: 'SUPERSET',
+    REDIRECT: 'REDIRECT',
+    NAVIGATE: 'NAVIGATE',
 };
 
 module.exports = {

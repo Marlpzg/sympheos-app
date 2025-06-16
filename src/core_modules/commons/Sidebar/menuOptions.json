@@ -1,0 +1,165 @@
+[
+    {
+        "id": "overview",
+        "title": "Overview",
+        "icon": "FiHome",
+        "link": "/dashboard/overview",
+        "type": "SUPERSET"
+    },
+    {
+        "id": "results",
+        "title": "Results",
+        "key": "results",
+        "icon": "FiCpu",
+        "children": [
+            {
+                "id": "results_overview",
+                "title": "Overview",
+                "link": "/dashboard/resultsOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "results_mpima_overview",
+                "title": "M-PIMA Overview",
+                "link": "/dashboard/mPimaOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "results_mpima_data",
+                "title": "M-PIMA Data",
+                "key": "Fbb3mcEPeqP",
+                "link": "/?programId=Fbb3mcEPeqP&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "results_pima_overview",
+                "title": "PIMA Overview",
+                "link": "/dashboard/pimaOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "results_pima_data",
+                "title": "PIMA Data",
+                "key": "wlOqXvONeU4",
+                "link": "/?programId=wlOqXvONeU4&all",
+                "type": "CAPTURE"
+            }
+        ]
+    },
+    {
+        "id": "device_mng",
+        "title": "Device Manager",
+        "key": "device_mng",
+        "icon": "FiClipboard",
+        "children": [
+            {
+                "id": "device_overview",
+                "title": "Overview",
+                "link": "/dashboard/deviceOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "device_r1",
+                "title": "Connect R1",
+                "key": "emmnFREJ5n4",
+                "link": "/?programId=emmnFREJ5n4&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "device_netcom",
+                "title": "NetCom",
+                "key": "WoLFKfl21Om",
+                "link": "/?programId=WoLFKfl21Om&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "device_sms_printer",
+                "title": "SMS Printer",
+                "key": "JrKyubafFtp",
+                "link": "/?programId=JrKyubafFtp&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "device_pima",
+                "title": "PIMA",
+                "key": "vEK0nUEtkI6",
+                "link": "/?programId=vEK0nUEtkI6&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "device_mpima",
+                "title": "M-PIMA",
+                "key": "H8gFGCN7pgf",
+                "link": "/?programId=H8gFGCN7pgf&all",
+                "type": "CAPTURE"
+            }
+        ]
+    },
+    {
+        "id": "stock_mng",
+        "title": "Stock Manager",
+        "key": "stock_mng",
+        "icon": "FiBox",
+        "children": [
+            {
+                "id": "stock_overview",
+                "title": "Overview",
+                "link": "/dashboard/stockOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "stock_movements",
+                "title": "Movements",
+                "key": "Q9kbGp9fDua",
+                "link": "/?programId=Q9kbGp9fDua&all",
+                "type": "CAPTURE"
+            },
+            {
+                "id": "stock_products",
+                "title": "Products",
+                "link": "/dashboard/stockProducts",
+                "type": "REDIRECT"
+            }
+        ]
+    },
+    {
+        "id": "admin",
+        "title": "Admin",
+        "key": "admin",
+        "icon": "FiSettings",
+        "children": [
+            {
+                "id": "admin_overview",
+                "title": "Overview",
+                "link": "/dashboard/adminOverview",
+                "type": "SUPERSET"
+            },
+            {
+                "id": "admin_settings",
+                "title": "Settings",
+                "link": "/settings",
+                "type": "NAVIGATE"
+            },
+            {
+                "id": "admin_accounts",
+                "title": "Accounts",
+                "key": "accounts"
+            },
+            {
+                "id": "admin_profiles",
+                "title": "Profiles",
+                "key": "profiles"
+            },
+            {
+                "id": "admin_locations",
+                "title": "Locations",
+                "key": "locations"
+            },
+            {
+                "id": "admin_users",
+                "title": "Users",
+                "key": "users"
+            }
+        ]
+    }
+]
