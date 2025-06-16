@@ -3,7 +3,7 @@ import React from 'react';
 import { BulkActionBar } from '../../WorkingListsBase/BulkActionBar';
 import { CompleteAction } from './Actions';
 import type { Props } from './TrackedEntityBulkActions.types';
-import { DeleteEnrollmentsAction } from './Actions/DeleteEnrollmentsAction';
+import { RequestAction } from './Actions/RequestAction';
 
 export const TrackedEntityBulkActionsComponent = ({
     selectedRows,
@@ -34,18 +34,12 @@ export const TrackedEntityBulkActionsComponent = ({
                 removeRowsFromSelection={removeRowsFromSelection}
             />
 
-            <DeleteEnrollmentsAction
+            <RequestAction
                 selectedRows={selectedRows}
                 programDataWriteAccess={programDataWriteAccess}
                 programId={programId}
-                onUpdateList={onUpdateList}
+                onActionDone={onUpdateList}
             />
-
-            {/* <DeleteTeiAction */}
-            {/*     selectedRows={selectedRows} */}
-            {/*     selectedRowsCount={selectedRowsCount} */}
-            {/*     onUpdateList={onUpdateList} */}
-            {/* /> */}
         </BulkActionBar>
     );
 };

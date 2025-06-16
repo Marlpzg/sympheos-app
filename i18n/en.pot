@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-15T01:02:21.979Z\n"
-"PO-Revision-Date: 2025-06-15T01:02:21.979Z\n"
+"POT-Creation-Date: 2025-06-16T09:22:42.646Z\n"
+"PO-Revision-Date: 2025-06-16T09:22:42.646Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1566,13 +1566,6 @@ msgstr "You do not have access to remove the link and delete the linked event"
 msgid "An error occurred while loading the widget."
 msgstr "An error occurred while loading the widget."
 
-msgid ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-msgstr ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-
 msgid "Scheduled"
 msgstr "Scheduled"
 
@@ -1862,6 +1855,111 @@ msgstr ""
 
 msgid "An error occurred while deleting the records"
 msgstr "An error occurred while deleting the records"
+
+msgid "Update Location"
+msgstr "Update Location"
+
+msgid "Update Profile"
+msgstr "Update Profile"
+
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
+
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Request action"
+msgstr "Request action"
+
+msgid "TODO"
+msgstr "TODO"
+
+msgid "Run!"
+msgstr "Run!"
+
+msgid "The operation was successful"
+msgstr "The operation was successful"
+
+msgid "There was a problem running the selected operation"
+msgstr "There was a problem running the selected operation"
+
+msgid "Requests"
+msgstr "Requests"
+
+msgid "Send info"
+msgstr "Send info"
+
+msgid "Request log files"
+msgstr "Request log files"
+
+msgid "Device reboot"
+msgstr "Device reboot"
+
+msgid "Reset Modem"
+msgstr "Reset Modem"
+
+msgid "Update Instance"
+msgstr "Update Instance"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Resend Auth Key"
+msgstr "Resend Auth Key"
+
+msgid "Resend SSH Key"
+msgstr "Resend SSH Key"
+
+msgid "Are you sure you want to proceed with this operation?"
+msgstr "Are you sure you want to proceed with this operation?"
+
+msgid "Send Info"
+msgstr "Send Info"
+
+msgid "Request Log Files"
+msgstr "Request Log Files"
+
+msgid "From URL"
+msgstr "From URL"
+
+msgid "e.g. {{protocol}}//example.com"
+msgstr "e.g. {{protocol}}//example.com"
+
+msgid "Please insert a valid URL"
+msgstr "Please insert a valid URL"
+
+msgid "To URL"
+msgstr "To URL"
+
+msgid "Profiles"
+msgstr "Profiles"
+
+msgid "Firmware"
+msgstr "Firmware"
+
+msgid "APN"
+msgstr "APN"
+
+msgid "Band Priority"
+msgstr "Band Priority"
+
+msgid "SSH Key"
+msgstr "SSH Key"
+
+msgid "Please insert a valid SSH Key"
+msgstr "Please insert a valid SSH Key"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"
