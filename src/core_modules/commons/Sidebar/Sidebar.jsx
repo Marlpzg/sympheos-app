@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { CircularLoader } from '@dhis2/ui';
 import { Link, useLocation } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { menu } from './menuOptions';
+import { useDataStore } from '../../../hooks/useDataStore';
+import menu from './menuOptions';
 import { LinkTypes } from './constants';
+import { getIcon } from '../../../utils';
 
 const isActive = (location, item) => {
     const comparator = item.key || item.link;
@@ -24,7 +27,7 @@ const isActive = (location, item) => {
 };
 
 const buildMenuItemContent = (item, isCollapsed) => {
-    const Icon = item.icon;
+    const Icon = getIcon(item.icon);
 
     return (<>
         {Icon && <Icon size={18} />}
@@ -69,9 +72,18 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true }) =>
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [displayMenu, setDisplayMenu] = useState(menu);
     const location = useLocation();
 
+    const { storeQuery } = useDataStore({ key: 'sympheosMenu', lazyGet: false });
+
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
+
+    useEffect(() => {
+        if (storeQuery.data && storeQuery.data.menu) {
+            setDisplayMenu(storeQuery.data.menu);
+        }
+    }, [storeQuery.data]);
 
     return (
         <aside
@@ -108,34 +120,42 @@ const Sidebar = () => {
                 </button>
             </div>
 
-            <ul style={{ listStyle: 'none', padding: 0 }}>
-                {menu.map(item => (
-                    <li
-                        key={item.id || item.title}
-                        style={{
-                            marginBottom: '0.5rem',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        {buildItemComponent({ location, isCollapsed, item })}
+            {storeQuery.loading && <CircularLoader size={24} />}
+            {!storeQuery.loading && displayMenu &&
+                <ul style={{ listStyle: 'none', padding: 0 }}>
+                    {displayMenu.map(item => (
+                        <li
+                            key={item.id || item.title}
+                            style={{
+                                marginBottom: '0.5rem',
+                                cursor: 'pointer',
+                            }}
+                        >
+                            {buildItemComponent({ location, isCollapsed, item })}
 
-                        {!isCollapsed && item.children && (
-                            <ul className={'list_sidebar'}>
-                                {item.children.map(child => (
-                                    <li
-                                        key={child.id || child.title}
-                                        style={{
-                                            cursor: 'pointer',
-                                        }}
-                                    >
-                                        {buildItemComponent({ location, isCollapsed, item: child, isHeader: false })}
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
-                ))}
-            </ul>
+                            {!isCollapsed && item.children && (
+                                <ul className={'list_sidebar'}>
+                                    {item.children.map(child => (
+                                        <li
+                                            key={child.id || child.title}
+                                            style={{
+                                                cursor: 'pointer',
+                                            }}
+                                        >
+                                            {buildItemComponent({
+                                                location,
+                                                isCollapsed,
+                                                item: child,
+                                                isHeader: false,
+                                            })}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            }
         </aside>
     );
 };
