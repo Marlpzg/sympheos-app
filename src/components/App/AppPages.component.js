@@ -11,6 +11,8 @@ import { EnrollmentEditEventPage } from 'capture-core/components/Pages/Enrollmen
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Settings } from 'sympheos-core/settings-page/Settings';
+import DashboardContainer from 'sympheos-core/dashboard/Dashboard';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ParamRoute = (props) => {
     const { search } = useLocation();
@@ -20,11 +22,21 @@ const ParamRoute = (props) => {
     return paramsSize > 0 ? <Route {...props} /> : <Redirect to="/dashboard/overview" />;
 };
 
+const DashboardWrapper = () => {
+    const { dashboardKey } = useParams();
+    return (<DashboardContainer
+        dashboardKey={dashboardKey}
+    />);
+};
+
 export const AppPages = () => (
     <>
         <ReactQueryDevtools />
         <Switch>
-            <Route path="/dashboard/:dashboardId" component={() => (<div><h1>Dashboard Here</h1></div>)} />
+            <Route
+                path="/dashboard/:dashboardKey"
+                component={DashboardWrapper}
+            />
             <Route path="/settings" component={Settings} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
