@@ -1907,6 +1907,45 @@ msgstr "The operation was successful"
 msgid "There was a problem running the selected operation"
 msgstr "There was a problem running the selected operation"
 
+msgid "Requests"
+msgstr "Requests"
+
+msgid "Send Info"
+msgstr "Send Info"
+
+msgid "Are you sure you want to send info to the selected devices?"
+msgstr "Are you sure you want to send info to the selected devices?"
+
+msgid "Confirm"
+msgstr "Confirm"
+
+msgid "Resend Auth Key"
+msgstr "Resend Auth Key"
+
+msgid "Resend SSH Key"
+msgstr "Resend SSH Key"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Security action"
+msgstr "Security action"
+
+msgid "TODO"
+msgstr "TODO"
+
+msgid "Run!"
+msgstr "Run!"
+
+msgid "Task 1"
+msgstr "Task 1"
+
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "Task action"
+msgstr "Task action"
+
 msgid "Update Location"
 msgstr "Update Location"
 
@@ -1931,14 +1970,8 @@ msgstr "Update Band Priority"
 msgid "Updates"
 msgstr "Updates"
 
-msgid "Request action"
-msgstr "Request action"
-
-msgid "TODO"
-msgstr "TODO"
-
-msgid "Run!"
-msgstr "Run!"
+msgid "Update action"
+msgstr "Update action"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"
