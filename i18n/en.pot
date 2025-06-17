@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-16T09:22:42.646Z\n"
-"PO-Revision-Date: 2025-06-16T09:22:42.646Z\n"
+"POT-Creation-Date: 2025-06-16T09:49:27.594Z\n"
+"PO-Revision-Date: 2025-06-16T09:49:27.595Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1856,6 +1856,45 @@ msgstr ""
 msgid "An error occurred while deleting the records"
 msgstr "An error occurred while deleting the records"
 
+msgid "Requests"
+msgstr "Requests"
+
+msgid "Send Info"
+msgstr "Send Info"
+
+msgid "Are you sure you want to send info to the selected devices?"
+msgstr "Are you sure you want to send info to the selected devices?"
+
+msgid "Confirm"
+msgstr "Confirm"
+
+msgid "Resend Auth Key"
+msgstr "Resend Auth Key"
+
+msgid "Resend SSH Key"
+msgstr "Resend SSH Key"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Security action"
+msgstr "Security action"
+
+msgid "TODO"
+msgstr "TODO"
+
+msgid "Run!"
+msgstr "Run!"
+
+msgid "Task 1"
+msgstr "Task 1"
+
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "Task action"
+msgstr "Task action"
+
 msgid "Update Location"
 msgstr "Update Location"
 
@@ -1880,23 +1919,14 @@ msgstr "Update Band Priority"
 msgid "Updates"
 msgstr "Updates"
 
-msgid "Request action"
-msgstr "Request action"
-
-msgid "TODO"
-msgstr "TODO"
-
-msgid "Run!"
-msgstr "Run!"
+msgid "Update action"
+msgstr "Update action"
 
 msgid "The operation was successful"
 msgstr "The operation was successful"
 
 msgid "There was a problem running the selected operation"
 msgstr "There was a problem running the selected operation"
-
-msgid "Requests"
-msgstr "Requests"
 
 msgid "Send info"
 msgstr "Send info"
@@ -1913,20 +1943,8 @@ msgstr "Reset Modem"
 msgid "Update Instance"
 msgstr "Update Instance"
 
-msgid "Security"
-msgstr "Security"
-
-msgid "Resend Auth Key"
-msgstr "Resend Auth Key"
-
-msgid "Resend SSH Key"
-msgstr "Resend SSH Key"
-
 msgid "Are you sure you want to proceed with this operation?"
 msgstr "Are you sure you want to proceed with this operation?"
-
-msgid "Send Info"
-msgstr "Send Info"
 
 msgid "Request Log Files"
 msgstr "Request Log Files"
@@ -1995,9 +2013,6 @@ msgstr "Share view..."
 
 msgid "Do you really want to delete the '{{templateName}}' view?"
 msgstr "Do you really want to delete the '{{templateName}}' view?"
-
-msgid "Confirm"
-msgstr "Confirm"
 
 msgid "Save As view"
 msgstr "Save As view"

@@ -34,7 +34,7 @@ const styles = {
 
 type Props = {|
     programId: string,
-    setShowAccessible: () => void,
+        setShowAccessible: () => void,
     ...CssClasses,
 |}
 

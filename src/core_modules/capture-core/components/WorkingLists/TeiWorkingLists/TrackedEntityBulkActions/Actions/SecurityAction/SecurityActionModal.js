@@ -3,23 +3,20 @@ import log from 'loglevel';
 import React, { useState } from 'react';
 import i18n from '@dhis2/d2-i18n';
 import { Button, ButtonStrip, Modal, ModalActions, ModalContent, ModalTitle } from '@dhis2/ui';
-import { useRequestEvents } from './RequestAction.functions';
+import { useSecurityEvents } from './SecurityAction.functions';
+
 
 type ModalProps = {
     onClose: () => void,
-    option: string,
-    selectedRows: { [id: string]: boolean },
 };
 
-export const RequestActionModal = ({ onClose, option, selectedRows }: ModalProps) => {
-    const { runAction } = useRequestEvents();
+export const SecurityActionModal = ({ onClose }: ModalProps) => {
+    const { runAction } = useSecurityEvents();
+
     const [isLoading, setIsLoading] = useState(false);
     const handleAsyncAction = async (asyncfunction: () => Promise<void>) => {
         try {
             setIsLoading(true);
-            Object.keys(selectedRows).filter(row => selectedRows[row]).forEach((value) => {
-                console.log(value);
-            });
             await asyncfunction();
         } catch (error) {
             setIsLoading(false);
@@ -33,14 +30,14 @@ export const RequestActionModal = ({ onClose, option, selectedRows }: ModalProps
         <Modal
             small
             onClose={onClose}
-            dataTest={'request-action-events-dialog'}
+            dataTest={'bulk-delete-events-dialog'}
         >
             <ModalTitle>
-                {option}{i18n.t('Send Info')}
+                {i18n.t('Security action')}
             </ModalTitle>
 
             <ModalContent>
-                {i18n.t('Are you sure you want to send info to the selected devices?')}
+                {i18n.t('TODO')}
             </ModalContent>
 
             <ModalActions>
@@ -58,7 +55,7 @@ export const RequestActionModal = ({ onClose, option, selectedRows }: ModalProps
                         onClick={() => handleAsyncAction(runAction)}
                         loading={isLoading}
                     >
-                        {i18n.t('Confirm')}
+                        {i18n.t('Run!')}
                     </Button>
                 </ButtonStrip>
             </ModalActions>
