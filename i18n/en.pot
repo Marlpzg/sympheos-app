@@ -1937,6 +1937,9 @@ msgstr "TODO"
 msgid "Run!"
 msgstr "Run!"
 
+msgid "Are you sure you want to proceed?"
+msgstr "Are you sure you want to proceed?"
+
 msgid "Task 1"
 msgstr "Task 1"
 
