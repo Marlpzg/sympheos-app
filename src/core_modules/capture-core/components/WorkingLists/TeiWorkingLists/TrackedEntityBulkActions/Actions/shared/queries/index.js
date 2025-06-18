@@ -6,7 +6,7 @@ export const getEnrollmentQuery = {
 
 export const getEnrollmentAttributesQuery = enrollmentId => ({
     resource: `tracker/enrollments/${enrollmentId}`,
-    params: { fields: 'attributes' },
+    params: { fields: 'attributes', cacheBust: Date.now() },
 });
 
 export const getTrackedEntityAttributesQuery = {
@@ -35,3 +35,12 @@ export const updateTrackedEntityInstanceQuery = {
         attributes,
     }),
 };
+
+export const getOptionSetQuery = id => ({
+    resource: 'optionSets',
+    id,
+    params: {
+        fields: 'options[:all]',
+        paging: false,
+    },
+});

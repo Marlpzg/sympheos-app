@@ -1,4 +1,3 @@
-// @flow
 /**
  * Check if a given string is a valid URL.
  *
@@ -8,7 +7,7 @@
  *   array. Otherwise it will return true for any valid URL.
  * @returns {Boolean} true if the string is a valid URL, false otherwise.
  */
-export const isValidURL = (str: string, allowedProtocols?: Array<string>) => {
+export const isValidURL = (str, allowedProtocols) => {
     try {
         const url = new URL(str);
         return allowedProtocols?.includes?.(url.protocol) ?? true;

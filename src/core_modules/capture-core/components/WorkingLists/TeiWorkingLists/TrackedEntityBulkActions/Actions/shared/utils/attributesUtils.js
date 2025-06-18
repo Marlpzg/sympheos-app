@@ -6,8 +6,8 @@
  * @returns {String|Null} The value of the attribute with the given id, or null if it was not found.
  */
 export const getAttributeValue = (attributes, id) => {
-    const attr = (attributes ?? []).find(attribute => attribute.attribute === id);
-    return attr?.value ?? null;
+    const attribute = (attributes ?? []).find(attr => attr.attribute === id);
+    return attribute?.value ?? null;
 };
 
 /**

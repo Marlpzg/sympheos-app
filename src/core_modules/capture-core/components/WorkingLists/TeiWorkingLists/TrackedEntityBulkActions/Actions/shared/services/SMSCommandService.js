@@ -103,15 +103,19 @@ export default class SMSCommandService {
       }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async prepare(commandName) {
+      if (!this) return {};
       switch (commandName) {
+      // Leaving this commented as the requirements are constantly changing
+      // It seems like all this functionality (getProfile) was implemented on the backend for now
       case SMS_COMMANDS.UPDATE_CONFIG: {
-          const profile = await this.getProfile();
-          return profile ? { profile } : {};
+          // TODO: check with the plugin project
+          return {};
+          // const profile = await this.getProfile();
+          // return profile ? { profile } : {};
       }
       // Leaving this commented as the requirements are constantly changing
-      // It seems like we no longer need to get the auth key. We just need to call the smsCommand and the
-      // API/backend will take care of the rest.
       // case SMS_COMMANDS.SEND_KEY: {
       //   const key = await this.getAuthKey();
       //   return key
@@ -135,9 +139,7 @@ export default class SMSCommandService {
               .json();
 
           if (
-              response?.httpStatusCode === HTTP_STATUS.OK &&
-        response?.response?.status === 'SUCCESS'
-          ) {
+              response?.httpStatusCode === HTTP_STATUS.OK) {
               return OK(response);
           }
           return ERROR;

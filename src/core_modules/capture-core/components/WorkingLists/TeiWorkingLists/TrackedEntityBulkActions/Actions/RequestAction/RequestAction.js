@@ -5,8 +5,10 @@ import i18n from '@dhis2/d2-i18n';
 import { SingleSelectField, SingleSelectOption } from '@dhis2/ui';
 import { useAuthority } from 'capture-core/utils/userInfo/useAuthority';
 import { RequestActionModal } from './RequestActionModal';
-import { SELECT, selectDeviceActions } from '../hooks/SelectDeviceActions';
-import { actionTypes } from '../hooks/actionTypes';
+import { actionTypes } from '../shared/actions/actionTypes'
+;
+import { tabsDeviceActions } from '../shared/actions';
+
 
 type Props = {
     selectedRows: { [id: string]: boolean }
@@ -33,7 +35,7 @@ export const RequestAction = ({
         setIsModalOpen(true);
     };
 
-    const reqActions = selectDeviceActions[SELECT.REQUESTS].actions;
+    const reqActions = tabsDeviceActions[0].actions;
 
     return (
         <>

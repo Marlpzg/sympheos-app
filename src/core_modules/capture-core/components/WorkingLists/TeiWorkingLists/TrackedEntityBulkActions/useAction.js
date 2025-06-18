@@ -1,8 +1,8 @@
 // @flow
 import { useState } from 'react';
-import { TEAService } from './Actions/services/TEAService';
-import { SMSCommandService } from './Actions/services/SMSCommandService';
-import { actions } from './Actions/hooks/actions';
+import { TEAService } from './Actions/shared/services/TEAService';
+import { SMSCommandService } from './Actions/shared/services/SMSCommandService';
+import { actions } from './Actions/shared/actions';
 
 type Props = {|
     teiId: string,

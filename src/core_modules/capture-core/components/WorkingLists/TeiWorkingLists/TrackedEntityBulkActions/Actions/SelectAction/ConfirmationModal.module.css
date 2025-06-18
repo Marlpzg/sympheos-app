@@ -1,0 +1,11 @@
+.container {
+  height: 500px;
+}
+
+.title {
+  font-size: 16px !important;
+}
+
+.content {
+  min-height: 50px !important;
+}

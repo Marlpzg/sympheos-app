@@ -1,8 +1,10 @@
 // @flow
-import React from 'react';
+import React, { useContext } from 'react';
 import { BulkActionBar } from '../../WorkingListsBase/BulkActionBar';
-import { RequestAction, UpdateAction, TaskAction, SecurityAction } from './Actions';
+import { SelectAction } from './Actions';
 import type { Props } from './TrackedEntityBulkActions.types';
+import { tabsDeviceActions } from './Actions/shared/actions';
+import { Context } from './Actions/shared/Context';
 
 export const TrackedEntityBulkActionsComponent = ({
     selectedRows,
@@ -11,18 +13,42 @@ export const TrackedEntityBulkActionsComponent = ({
     onClearSelection,
     onUpdateList,
 }: Props) => {
+    const context = useContext(Context);
+
+    const isBlackListed = (action) => {
+        const instanceType = context?.sympheosConfig?.instanceType;
+        return !!action.blackList?.includes?.(instanceType);
+    };
+
     const selectedRowsCount = Object.keys(selectedRows).length;
 
     if (!selectedRowsCount) {
         return null;
     }
 
+
     return (
         <BulkActionBar
             selectedRowsCount={selectedRowsCount}
             onClearSelection={onClearSelection}
+
         >
-            <RequestAction
+            {tabsDeviceActions.map(action => (
+                !isBlackListed(action) ? (
+                    <SelectAction
+                        selectedRows={selectedRows}
+                        programDataWriteAccess={programDataWriteAccess}
+                        programId={programId}
+                        onActionDone={onUpdateList}
+                        key={action.id}
+                        action={action}
+                    >
+                        {action.title}
+                    </SelectAction>
+                ) : null
+            ))}
+
+            {/* <RequestAction
                 selectedRows={selectedRows}
                 programDataWriteAccess={programDataWriteAccess}
                 programId={programId}
@@ -45,7 +71,7 @@ export const TrackedEntityBulkActionsComponent = ({
                 programDataWriteAccess={programDataWriteAccess}
                 programId={programId}
                 onActionDone={onUpdateList}
-            />
+            /> */}
 
         </BulkActionBar>
     );

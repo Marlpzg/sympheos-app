@@ -1,16 +1,40 @@
+// @flow
+
+// TODO: review with the plugin project
 import i18n from '@dhis2/d2-i18n';
 import { actionTypes } from './actionTypes';
+import { INSTANCE_TYPE } from '../constants';
 
-export const SELECT = {
+type RequestsAction = $Values<typeof actionTypes.requests>;
+type UpdatesAction = $Values<typeof actionTypes.updates>;
+type SecurityAction = $Values<typeof actionTypes.security>;
+export type ActionType = RequestsAction | UpdatesAction | SecurityAction;
+
+export type InstanceType = $Values<typeof INSTANCE_TYPE>;
+
+export type DeviceAction = {|
+  +label: string,
+  +type: ActionType,
+  +blackList?: Array<InstanceType>,
+|};
+
+export type TabDeviceAction = {|
+  +id: string,
+  +title: string,
+  +actions: Array<DeviceAction>,
+|};
+
+export type TabsDeviceActions = Array<TabDeviceAction>;
+
+export const TABS = {
     REQUESTS: 'requests',
     UPDATES: 'updates',
     SECURITY: 'security',
-    TASKS: 'tasks',
 };
 
-export const selectDeviceActions =
-{
-    [SELECT.REQUESTS]: {
+export const tabsDeviceActions: TabsDeviceActions = [
+    {
+        id: TABS.REQUESTS,
         title: i18n.t('Requests'),
         actions: [
             {
@@ -31,8 +55,8 @@ export const selectDeviceActions =
             },
         ],
     },
-
-    [SELECT.UPDATES]: {
+    {
+        id: TABS.UPDATES,
         title: i18n.t('Updates'),
         actions: [
             {
@@ -40,12 +64,16 @@ export const selectDeviceActions =
                 type: actionTypes.updates.instanceSwitch,
             },
             {
+                label: i18n.t('Overwrite Profile'),
+                type: actionTypes.updates.overwriteProfile,
+            },
+            {
                 label: i18n.t('Update Profile'),
                 type: actionTypes.updates.updateProfile,
             },
             {
-                label: i18n.t('Overwrite Profile'),
-                type: actionTypes.updates.overwriteProfile,
+                label: i18n.t('Overwrite Firmware'),
+                type: actionTypes.updates.overwriteFirmware,
             },
             {
                 label: i18n.t('Update Firmware'),
@@ -58,6 +86,7 @@ export const selectDeviceActions =
             {
                 label: i18n.t('Update APN'),
                 type: actionTypes.updates.updateAPN,
+                blackList: [INSTANCE_TYPE.ACCOUNT], // Will not show on Account Instances
             },
             {
                 label: i18n.t('Update Band Priority'),
@@ -65,7 +94,8 @@ export const selectDeviceActions =
             },
         ],
     },
-    [SELECT.SECURITY]: {
+    {
+        id: TABS.SECURITY,
         title: i18n.t('Security'),
         actions: [
             {
@@ -78,4 +108,5 @@ export const selectDeviceActions =
             },
         ],
     },
-};
+];
+

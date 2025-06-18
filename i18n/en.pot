@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-16T09:49:27.594Z\n"
-"PO-Revision-Date: 2025-06-16T09:49:27.595Z\n"
+"POT-Creation-Date: 2025-06-18T13:43:19.217Z\n"
+"PO-Revision-Date: 2025-06-18T13:43:19.217Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1796,66 +1796,6 @@ msgstr "An error occurred when completing the enrollments"
 msgid "An unknown error occurred when completing enrollments"
 msgstr "An unknown error occurred when completing enrollments"
 
-msgid "You do not have access to delete enrollments"
-msgstr "You do not have access to delete enrollments"
-
-msgid "Delete enrollments"
-msgstr "Delete enrollments"
-
-msgid "Delete selected enrollments"
-msgstr "Delete selected enrollments"
-
-msgid "An error occurred while loading the selected enrollments. Please try again."
-msgstr "An error occurred while loading the selected enrollments. Please try again."
-
-msgid ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
-msgstr ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
-
-msgid "Active enrollments ({{count}})"
-msgid_plural "Active enrollments ({{count}})"
-msgstr[0] "Active enrollments ({{count}})"
-msgstr[1] "Active enrollments ({{count}})"
-
-msgid "Completed enrollments ({{count}})"
-msgid_plural "Completed enrollments ({{count}})"
-msgstr[0] "Completed enrollments ({{count}})"
-msgstr[1] "Completed enrollments ({{count}})"
-
-msgid "Cancelled enrollments ({{count}})"
-msgid_plural "Cancelled enrollments ({{count}})"
-msgstr[0] "Cancelled enrollments ({{count}})"
-msgstr[1] "Cancelled enrollments ({{count}})"
-
-msgid "Delete {{count}} enrollment"
-msgid_plural "Delete {{count}} enrollment"
-msgstr[0] "Delete {{count}} enrollment"
-msgstr[1] "Delete {{count}} enrollments"
-
-msgid "An error occurred when deleting enrollments"
-msgstr "An error occurred when deleting enrollments"
-
-msgid "Delete {{ trackedEntityName }} with all enrollments"
-msgstr "Delete {{ trackedEntityName }} with all enrollments"
-
-msgid "Delete {{count}} {{ trackedEntityName }}"
-msgid_plural "Delete {{count}} {{ trackedEntityName }}"
-msgstr[0] "Delete {{count}} {{ trackedEntityName }}"
-msgstr[1] "Delete {{count}} {{ trackedEntityName }}"
-
-msgid ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
-msgstr ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
-
-msgid "An error occurred while deleting the records"
-msgstr "An error occurred while deleting the records"
-
 msgid "Requests"
 msgstr "Requests"
 
@@ -1885,6 +1825,9 @@ msgstr "TODO"
 
 msgid "Run!"
 msgstr "Run!"
+
+msgid "Are you sure you want to proceed?"
+msgstr "Are you sure you want to proceed?"
 
 msgid "Task 1"
 msgstr "Task 1"
@@ -1922,47 +1865,29 @@ msgstr "Updates"
 msgid "Update action"
 msgstr "Update action"
 
-msgid "The operation was successful"
-msgstr "The operation was successful"
-
-msgid "There was a problem running the selected operation"
-msgstr "There was a problem running the selected operation"
-
-msgid "Send info"
-msgstr "Send info"
-
-msgid "Request log files"
-msgstr "Request log files"
-
-msgid "Device reboot"
-msgstr "Device reboot"
-
-msgid "Reset Modem"
-msgstr "Reset Modem"
-
-msgid "Update Instance"
-msgstr "Update Instance"
-
 msgid "Are you sure you want to proceed with this operation?"
 msgstr "Are you sure you want to proceed with this operation?"
 
 msgid "Request Log Files"
 msgstr "Request Log Files"
 
+msgid "Device reboot"
+msgstr "Device reboot"
+
+msgid "Update Instance"
+msgstr "Update Instance"
+
 msgid "From URL"
 msgstr "From URL"
-
-msgid "e.g. {{protocol}}//example.com"
-msgstr "e.g. {{protocol}}//example.com"
-
-msgid "Please insert a valid URL"
-msgstr "Please insert a valid URL"
 
 msgid "To URL"
 msgstr "To URL"
 
 msgid "Profiles"
 msgstr "Profiles"
+
+msgid "Overwrite Firmware"
+msgstr "Overwrite Firmware"
 
 msgid "Firmware"
 msgstr "Firmware"
@@ -1973,11 +1898,32 @@ msgstr "APN"
 msgid "Band Priority"
 msgstr "Band Priority"
 
+msgid "Auth Key"
+msgstr "Auth Key"
+
+msgid "Please insert a valid Auth Key"
+msgstr "Please insert a valid Auth Key"
+
 msgid "SSH Key"
 msgstr "SSH Key"
 
 msgid "Please insert a valid SSH Key"
 msgstr "Please insert a valid SSH Key"
+
+msgid "Send info"
+msgstr "Send info"
+
+msgid "Request log files"
+msgstr "Request log files"
+
+msgid "Reset Modem"
+msgstr "Reset Modem"
+
+msgid "The operation was successful"
+msgstr "The operation was successful"
+
+msgid "There was a problem running the selected operation"
+msgstr "There was a problem running the selected operation"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"

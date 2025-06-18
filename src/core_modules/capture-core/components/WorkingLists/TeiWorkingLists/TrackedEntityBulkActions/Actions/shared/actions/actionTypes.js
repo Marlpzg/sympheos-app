@@ -9,6 +9,7 @@ export const actionTypes = {
         instanceSwitch: 'instanceSwitch',
         updateProfile: 'updateProfile',
         overwriteProfile: 'overwriteProfile',
+        overwriteFirmware: 'overwriteFirmware',
         updateFirmware: 'updateFirmware',
         clearRequestedFirmware: 'clearRequestedFirmware',
         updateAPN: 'updateAPN',
