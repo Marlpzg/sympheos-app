@@ -32,7 +32,7 @@ const buildMenuItemContent = (item, isCollapsed, locale) => {
 
     return (<>
         {Icon && <Icon size={18} />}
-        {!isCollapsed && <span>{item.title[locale] || item.title.default}</span>}
+        {!isCollapsed && <span>{item.title[locale] || item.title.default || item.id}</span>}
     </>);
 };
 
@@ -132,10 +132,25 @@ const Sidebar = () => {
                 </button>
             </div>
 
-            {storeQuery.loading && <CircularLoader size={24} />}
-            {!storeQuery.loading && displayMenu &&
+            {storeQuery.loading &&
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100px',
+                        width: '100%',
+                    }}
+                >
+                    <CircularLoader
+                        size={24}
+                        invert
+                    />
+                </div>
+            }
+            {!storeQuery.loading && displayMenu?.menu &&
                 <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {displayMenu.menu?.map(item => (
+                    {displayMenu.menu.map(item => (
                         <li
                             key={item.id || item.title}
                             style={{
