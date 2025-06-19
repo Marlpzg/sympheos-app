@@ -11,7 +11,7 @@ import { MinimalCoordinates, PolygonCoordinates } from '../components/Coordinate
 import { TooltipOrgUnit } from '../components/Tooltips/TooltipOrgUnit';
 
 function convertDateForListDisplay(rawValue: string): string {
-    return convertIsoToLocalCalendar(rawValue);
+    return convertIsoToLocalCalendar(rawValue).split('T').join(' ');
 }
 
 function convertDateTimeForListDisplay(rawValue: string): string {
