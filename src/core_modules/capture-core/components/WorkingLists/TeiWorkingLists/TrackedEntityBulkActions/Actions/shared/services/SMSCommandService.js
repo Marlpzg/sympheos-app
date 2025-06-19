@@ -26,7 +26,7 @@ export default class SMSCommandService {
   sympheosConfig;
   baseURL =
     process.env.NODE_ENV === 'development'
-        ? process.env.DHIS2_DEVICE_GATEWAY_API
+        ? process.env.REACT_APP_DHIS2_DEVICE_GATEWAY_API
         : '';
 
   constructor(
