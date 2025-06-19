@@ -23,7 +23,7 @@ type RangeValue = {
 }
 
 function convertDateForEdit(rawValue: string): string {
-    return convertIsoToLocalCalendar(rawValue);
+    return convertIsoToLocalCalendar(rawValue).split('T')[0];
 }
 
 function convertDateTimeForEdit(rawValue: string): DateTimeFormValue {
@@ -100,6 +100,7 @@ export function convertValue(value: any, type: $Keys<typeof dataElementTypes>) {
     if (!value && value !== 0 && value !== false) {
         return value;
     }
+
     // $FlowFixMe dataElementTypes flow error
     return (valueConvertersForType[type] ? valueConvertersForType[type](value) : value);
 }
