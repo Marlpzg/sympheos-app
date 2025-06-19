@@ -1,9 +1,12 @@
 // @flow
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { useAlert, useDataMutation } from '@dhis2/app-runtime';
 import { SingleSelectField, SingleSelectOption } from '@dhis2/ui';
 import { useAuthority } from 'capture-core/utils/userInfo/useAuthority';
+import { handleAPIResponse, REQUESTED_ENTITIES } from 'capture-core/utils/api';
+import { featureAvailable, FEATURES } from 'capture-core-utils';
+import { useApiDataQuery } from 'capture-core/utils/reactQueryHelpers';
 import { ConfirmationModal } from './SelectActionModal';
 import type { TabDeviceAction } from '../shared/actions/tabsDeviceActions.types';
 import { actions } from '../shared/actions';
@@ -12,6 +15,7 @@ import { alertMessages } from '../shared/constants';
 import { updateTrackedEntityInstanceQuery } from '../shared/queries';
 import { buildConfirmationMessage } from '../shared/utils/stringUtils';
 import { Context } from '../shared/Context';
+import { mapAttributesByCode } from '../shared/utils/attributesUtils';
 
 
 type Props = {
@@ -32,14 +36,15 @@ export const SelectAction = ({
 }: Props) => {
     const context = useContext(Context);
     const [mutate] = useDataMutation(updateTrackedEntityInstanceQuery);
-    // const [attributes, setAttributes] = useState({});
+    // eslint-disable-next-line no-unused-vars
+    const [attributes, setAttributes] = useState({});
     const [option, setOption] = useState('');
-    // const [isModalOpen, setIsModalOpen] = useState(false);
     const { hasAuthority } = useAuthority({ authority: CASCADE_DELETE_TEI_AUTHORITY });
     const [selectedAction, setSelectedAction] = useState(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
-    // const [formValues, setFormValues] = useState({});
+    // eslint-disable-next-line no-unused-vars
+    const [formValues, setFormValues] = useState({});
     // const [isFormValid, setIsFormValid] = useState(false);
     const { dataEngine, sympheosConfig } = context;
 
@@ -48,15 +53,71 @@ export const SelectAction = ({
         ({ params }) => params,
     );
 
-    /*
-    useEffect(() => {
-        const enrollmentAttributes = data?.enrollment?.attributes;
+    const {
+        data: trackedEntities,
+        isError: isTrackedEntitiesError,
+        isLoading: isFetchingTrackedEntities,
+    } = useApiDataQuery(
+        ['WorkingLists', 'BulkActionBar', 'SelectAction', 'trackedEntities', selectedRows],
+        {
+            resource: 'tracker/trackedEntities',
 
-        if (enrollmentAttributes?.length > 0) {
-            const mappedAttributesByCode = mapAttributesByCode(enrollmentAttributes);
-            setAttributes(mappedAttributesByCode);
-        }
-    }, [data]); */
+            params: () => {
+                const supportForFeature = featureAvailable(FEATURES.newEntityFilterQueryParam);
+                const filterQueryParam: string = supportForFeature ? 'trackedEntities' : 'trackedEntity';
+
+                return {
+                    program: programId,
+                    fields: `
+                        trackedEntity,
+                        attributes,
+                        orgUnit,
+                        enrollments[
+                            enrollment,
+                            orgUnit,
+                            status,
+                            enrollmentDate,
+                            incidentDate,
+                            program,
+                        ]
+                    `.replace(/\s+/g, ''), // eliminamos espacios innecesarios
+                    [filterQueryParam]: Object.keys(selectedRows).join(supportForFeature ? ',' : ';'),
+                    pageSize: 100,
+                };
+            },
+        },
+        {
+            enabled: Object.keys(selectedRows).length > 0,
+            select: (data: any) => {
+                const apiTrackedEntities = handleAPIResponse(REQUESTED_ENTITIES.trackedEntities, data);
+                return apiTrackedEntities;
+            },
+        },
+    );
+
+    if (isTrackedEntitiesError || isFetchingTrackedEntities) {
+        // showAlert({
+        //     message: alertMessages.error,
+        //     params: { critical: true },
+        // });
+    }
+
+
+    useEffect(() => {
+        const mappedAttributesByCodeForTrackedEntities = {};
+        trackedEntities?.forEach((trackedEntity) => {
+            const teiId = trackedEntity.trackedEntity;
+            // const enrollmentId = trackedEntity.enrollments?.[0]?.enrollment;
+            // const orgUnitId = trackedEntity.orgUnit;
+            const enrollmentAttributes = trackedEntity.attributes;
+
+            if (enrollmentAttributes?.length > 0) {
+                const mappedAttributesByCode = mapAttributesByCode(enrollmentAttributes);
+                mappedAttributesByCodeForTrackedEntities[teiId] = mappedAttributesByCode;
+            }
+        });
+        setAttributes(mappedAttributesByCodeForTrackedEntities);
+    }, [trackedEntities]);
 
 
     if (!hasAuthority) {
@@ -80,9 +141,9 @@ export const SelectAction = ({
 
 
     const handleSelectionChange = ({ selected }) => {
+        // could we get one of the enrollments IDS?...
         setOption(selected);
-        // attributes?.DV_SSH_KEY?.value ?? ''
-        const actionClicked = actions({ enrollmentId: '' }, null)?.[selected] ?? null;
+        const actionClicked = actions({ enrollmentId: trackedEntities?.[0]?.enrollments?.[0]?.enrollment }, null)?.[selected] ?? null;
 
         if (!actionClicked) {
             return null;
@@ -117,23 +178,22 @@ export const SelectAction = ({
             }));
         }; */
 
-    const runUpdateTEA = async (teiId) => {
+    const runUpdateTEA = async (teiId, orgUnitId) => {
         if (!selectedAction) {
             return;
         }
 
         try {
             const {
-                // updateTEA: { attribute, formValueField },
-                updateTEA: { },
+                updateTEA: { attribute, formValueField },
             } = selectedAction;
 
             const teaService = new TEAService(mutate);
             const response = await teaService.updateTEA(
                 teiId,
-                null,
-                null,
-                null, // formValues?.[formValueField] ?? '',
+                orgUnitId,
+                attribute,
+                formValues?.[formValueField] ?? '',
             );
 
             if (response.ok) {
@@ -146,11 +206,11 @@ export const SelectAction = ({
         }
     };
 
-    const runSMSCommand = async (teiId) => {
+    const runSMSCommand = async (teiId, orgUnitId, enrollmentId) => {
         try {
             const smsCommandService = new SMSCommandService({ dataEngine, sympheosConfig }, {
-                orgUnitId: null,
-                enrollmentId: null,
+                orgUnitId,
+                enrollmentId,
                 teiId,
                 programId,
             });
@@ -179,12 +239,14 @@ export const SelectAction = ({
         setShowLoading(true);
 
         const promises = Object.keys(selectedRows).filter(teiId => selectedRows[teiId]).map(async (teiId) => {
+            const { orgUnit: orgUnitId, enrollments } = trackedEntities?.find(trackedEntity => trackedEntity.trackedEntity === teiId) ?? {};
+            const enrollmentId = enrollments?.[0]?.enrollment;
             if (updateTEA) {
-                await runUpdateTEA(teiId);
+                await runUpdateTEA(teiId, orgUnitId);
             }
 
             if (smsCommand) {
-                await runSMSCommand(teiId);
+                await runSMSCommand(teiId, orgUnitId, enrollmentId);
             }
         });
 
@@ -216,6 +278,7 @@ export const SelectAction = ({
                         key={act.type}
                         label={act.label}
                         value={act.type}
+                        disabled={act.disabled}
                     />
                     // +type: ActionType,
                     // +blackList?: Array<InstanceType>,

@@ -16,6 +16,7 @@ export type DeviceAction = {|
   +label: string,
   +type: ActionType,
   +blackList?: Array<InstanceType>,
+  +disabled?: boolean,
 |};
 
 export type TabDeviceAction = {|
@@ -101,10 +102,12 @@ export const tabsDeviceActions: TabsDeviceActions = [
             {
                 label: i18n.t('Resend Auth Key'),
                 type: actionTypes.security.resendAuthKey,
+                disabled: true,
             },
             {
                 label: i18n.t('Resend SSH Key'),
                 type: actionTypes.security.resendSSHKey,
+                disabled: true,
             },
         ],
     },
