@@ -1919,24 +1919,6 @@ msgstr "Are you sure you want to send info to the selected devices?"
 msgid "Confirm"
 msgstr "Confirm"
 
-msgid "Resend Auth Key"
-msgstr "Resend Auth Key"
-
-msgid "Resend SSH Key"
-msgstr "Resend SSH Key"
-
-msgid "Security"
-msgstr "Security"
-
-msgid "Security action"
-msgstr "Security action"
-
-msgid "TODO"
-msgstr "TODO"
-
-msgid "Run!"
-msgstr "Run!"
-
 msgid "Are you sure you want to proceed?"
 msgstr "Are you sure you want to proceed?"
 
