@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-18T13:43:19.217Z\n"
-"PO-Revision-Date: 2025-06-18T13:43:19.217Z\n"
+"POT-Creation-Date: 2025-06-19T12:45:24.673Z\n"
+"PO-Revision-Date: 2025-06-19T12:45:24.674Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1796,77 +1796,17 @@ msgstr "An error occurred when completing the enrollments"
 msgid "An unknown error occurred when completing enrollments"
 msgstr "An unknown error occurred when completing enrollments"
 
-msgid "Requests"
-msgstr "Requests"
-
-msgid "Send Info"
-msgstr "Send Info"
-
-msgid "Are you sure you want to send info to the selected devices?"
-msgstr "Are you sure you want to send info to the selected devices?"
-
 msgid "Confirm"
 msgstr "Confirm"
-
-msgid "Resend Auth Key"
-msgstr "Resend Auth Key"
-
-msgid "Resend SSH Key"
-msgstr "Resend SSH Key"
-
-msgid "Security"
-msgstr "Security"
-
-msgid "Security action"
-msgstr "Security action"
-
-msgid "TODO"
-msgstr "TODO"
-
-msgid "Run!"
-msgstr "Run!"
 
 msgid "Are you sure you want to proceed?"
 msgstr "Are you sure you want to proceed?"
 
-msgid "Task 1"
-msgstr "Task 1"
-
-msgid "Tasks"
-msgstr "Tasks"
-
-msgid "Task action"
-msgstr "Task action"
-
-msgid "Update Location"
-msgstr "Update Location"
-
-msgid "Update Profile"
-msgstr "Update Profile"
-
-msgid "Overwrite Profile"
-msgstr "Overwrite Profile"
-
-msgid "Update Firmware"
-msgstr "Update Firmware"
-
-msgid "Clear Requested Firmware"
-msgstr "Clear Requested Firmware"
-
-msgid "Update APN"
-msgstr "Update APN"
-
-msgid "Update Band Priority"
-msgstr "Update Band Priority"
-
-msgid "Updates"
-msgstr "Updates"
-
-msgid "Update action"
-msgstr "Update action"
-
 msgid "Are you sure you want to proceed with this operation?"
 msgstr "Are you sure you want to proceed with this operation?"
+
+msgid "Send Info"
+msgstr "Send Info"
 
 msgid "Request Log Files"
 msgstr "Request Log Files"
@@ -1883,6 +1823,12 @@ msgstr "From URL"
 msgid "To URL"
 msgstr "To URL"
 
+msgid "Update Profile"
+msgstr "Update Profile"
+
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
+
 msgid "Profiles"
 msgstr "Profiles"
 
@@ -1892,8 +1838,20 @@ msgstr "Overwrite Firmware"
 msgid "Firmware"
 msgstr "Firmware"
 
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
 msgid "APN"
 msgstr "APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
 
 msgid "Band Priority"
 msgstr "Band Priority"
@@ -1904,11 +1862,17 @@ msgstr "Auth Key"
 msgid "Please insert a valid Auth Key"
 msgstr "Please insert a valid Auth Key"
 
+msgid "Resend SSH Key"
+msgstr "Resend SSH Key"
+
 msgid "SSH Key"
 msgstr "SSH Key"
 
 msgid "Please insert a valid SSH Key"
 msgstr "Please insert a valid SSH Key"
+
+msgid "Requests"
+msgstr "Requests"
 
 msgid "Send info"
 msgstr "Send info"
@@ -1918,6 +1882,15 @@ msgstr "Request log files"
 
 msgid "Reset Modem"
 msgstr "Reset Modem"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Resend Auth Key"
+msgstr "Resend Auth Key"
 
 msgid "The operation was successful"
 msgstr "The operation was successful"

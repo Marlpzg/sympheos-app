@@ -47,32 +47,6 @@ export const TrackedEntityBulkActionsComponent = ({
                     </SelectAction>
                 ) : null
             ))}
-
-            {/* <RequestAction
-                selectedRows={selectedRows}
-                programDataWriteAccess={programDataWriteAccess}
-                programId={programId}
-                onActionDone={onUpdateList}
-            />
-            <UpdateAction
-                selectedRows={selectedRows}
-                programDataWriteAccess={programDataWriteAccess}
-                programId={programId}
-                onActionDone={onUpdateList}
-            />
-            <SecurityAction
-                selectedRows={selectedRows}
-                programDataWriteAccess={programDataWriteAccess}
-                programId={programId}
-                onActionDone={onUpdateList}
-            />
-            <TaskAction
-                selectedRows={selectedRows}
-                programDataWriteAccess={programDataWriteAccess}
-                programId={programId}
-                onActionDone={onUpdateList}
-            /> */}
-
         </BulkActionBar>
     );
 };
