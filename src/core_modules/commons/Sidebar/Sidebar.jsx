@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CircularLoader } from '@dhis2/ui';
 import { Link, useLocation } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useUserLocale } from 'capture-core/utils/localeData/useUserLocale';
 import { useDataStore } from '../../../hooks/useDataStore';
 import menu from './menuOptions';
 import { LinkTypes } from './constants';
@@ -26,16 +27,16 @@ const isActive = (location, item) => {
     return comparator === (location.pathname + location.search);
 };
 
-const buildMenuItemContent = (item, isCollapsed) => {
+const buildMenuItemContent = (item, isCollapsed, locale) => {
     const Icon = getIcon(item.icon);
 
     return (<>
         {Icon && <Icon size={18} />}
-        {!isCollapsed && <span>{item.title}</span>}
+        {!isCollapsed && <span>{item.title[locale] || item.title.default}</span>}
     </>);
 };
 
-const buildItemComponent = ({ location, isCollapsed, item, isHeader = true }) => {
+const buildItemComponent = ({ location, isCollapsed, item, isHeader = true, locale = 'default' }) => {
     const padding = isHeader ? '0.5rem' : '0.25rem';
 
     if (item.link) {
@@ -52,7 +53,7 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true }) =>
                 borderRadius: '6px',
             }}
         >
-            {buildMenuItemContent(item, isCollapsed)}
+            {buildMenuItemContent(item, isCollapsed, locale)}
         </Link>);
     }
 
@@ -66,24 +67,35 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true }) =>
             color: 'white',
         }}
     >
-        {buildMenuItemContent(item, isCollapsed)}
+        {buildMenuItemContent(item, isCollapsed, locale)}
     </div>);
 };
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [displayMenu, setDisplayMenu] = useState(menu);
+    const [displayMenu, setDisplayMenu] = useState();
     const location = useLocation();
+    const { locale } = useUserLocale();
 
-    const { storeQuery } = useDataStore({ key: 'sympheosMenu', lazyGet: false });
+    const { storeQuery, storeMutation } = useDataStore({ key: 'sympheosMenu', lazyGet: false });
 
     const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
     useEffect(() => {
-        if (storeQuery.data && storeQuery.data.menu) {
-            setDisplayMenu(storeQuery.data.menu);
+        if (storeQuery.loading || storeMutation.loading) {
+            return;
         }
-    }, [storeQuery.data]);
+
+        if (storeQuery.data && storeQuery.data.results) {
+            setDisplayMenu(storeQuery.data.results);
+        } else {
+            storeMutation.mutate({
+                key: 'sympheosMenu',
+                data: menu,
+            });
+            storeQuery.refetch({ key: 'sympheosMenu' });
+        }
+    }, [storeQuery, storeMutation]);
 
     return (
         <aside
@@ -123,7 +135,7 @@ const Sidebar = () => {
             {storeQuery.loading && <CircularLoader size={24} />}
             {!storeQuery.loading && displayMenu &&
                 <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {displayMenu.map(item => (
+                    {displayMenu.menu?.map(item => (
                         <li
                             key={item.id || item.title}
                             style={{
@@ -131,7 +143,12 @@ const Sidebar = () => {
                                 cursor: 'pointer',
                             }}
                         >
-                            {buildItemComponent({ location, isCollapsed, item })}
+                            {buildItemComponent({
+                                location,
+                                isCollapsed,
+                                item,
+                                locale,
+                            })}
 
                             {!isCollapsed && item.children && (
                                 <ul className={'list_sidebar'}>
@@ -147,6 +164,7 @@ const Sidebar = () => {
                                                 isCollapsed,
                                                 item: child,
                                                 isHeader: false,
+                                                locale,
                                             })}
                                         </li>
                                     ))}
