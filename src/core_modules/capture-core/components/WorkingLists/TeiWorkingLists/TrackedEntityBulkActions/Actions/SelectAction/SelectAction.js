@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 import { useAlert, useDataMutation } from '@dhis2/app-runtime';
 import { SingleSelectField, SingleSelectOption } from '@dhis2/ui';
@@ -7,15 +7,16 @@ import { useAuthority } from 'capture-core/utils/userInfo/useAuthority';
 import { handleAPIResponse, REQUESTED_ENTITIES } from 'capture-core/utils/api';
 import { featureAvailable, FEATURES } from 'capture-core-utils';
 import { useApiDataQuery } from 'capture-core/utils/reactQueryHelpers';
-import { ConfirmationModal } from './SelectActionModal';
+import { ConfirmationModal } from './ConfirmationModal';
 import type { TabDeviceAction } from '../shared/actions/tabsDeviceActions.types';
+import type { Action } from '../shared/actions/actions';
 import { actions } from '../shared/actions';
 import { SMSCommandService, TEAService } from '../shared/services';
 import { alertMessages } from '../shared/constants';
 import { updateTrackedEntityInstanceQuery } from '../shared/queries';
 import { buildConfirmationMessage } from '../shared/utils/stringUtils';
 import { Context } from '../shared/Context';
-import { mapAttributesByCode } from '../shared/utils/attributesUtils';
+import { FormActionModal } from './ FormActionModal';
 
 
 type Props = {
@@ -36,22 +37,30 @@ export const SelectAction = ({
 }: Props) => {
     const context = useContext(Context);
     const [mutate] = useDataMutation(updateTrackedEntityInstanceQuery);
-    // eslint-disable-next-line no-unused-vars
-    const [attributes, setAttributes] = useState({});
+
     const [option, setOption] = useState('');
     const { hasAuthority } = useAuthority({ authority: CASCADE_DELETE_TEI_AUTHORITY });
-    const [selectedAction, setSelectedAction] = useState(null);
+    const [selectedAction, setSelectedAction] = useState<?Action>(null);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showLoading, setShowLoading] = useState(false);
-    // eslint-disable-next-line no-unused-vars
+    const [showActionPage, setShowActionPage] = useState(false);
     const [formValues, setFormValues] = useState({});
-    // const [isFormValid, setIsFormValid] = useState(false);
+    const fieldsValid = useRef({});
+    const requiredFields = useRef([]);
+    const [isFormValid, setIsFormValid] = useState(false);
     const { dataEngine, sympheosConfig } = context;
 
     const { show: showAlert } = useAlert(
         ({ message }) => message,
         ({ params }) => params,
     );
+
+    const clearForm = () => {
+        setFormValues({});
+        setIsFormValid(false);
+        fieldsValid.current = {};
+        requiredFields.current = [];
+    };
 
     const {
         data: trackedEntities,
@@ -95,29 +104,28 @@ export const SelectAction = ({
         },
     );
 
+
+    useEffect(() => {
+        const fieldsLength = selectedAction?.fields?.length ?? 0;
+        clearForm();
+
+        if (fieldsLength > 0) {
+            const fields = selectedAction?.fields ?? [];
+
+            requiredFields.current = fields.reduce((acc, field) => {
+                if (field.params?.required) {
+                    acc.push(field.formValueField);
+                }
+                return acc;
+            }, []);
+        }
+    }, [selectedAction]);
     if (isTrackedEntitiesError || isFetchingTrackedEntities) {
         // showAlert({
         //     message: alertMessages.error,
         //     params: { critical: true },
         // });
     }
-
-
-    useEffect(() => {
-        const mappedAttributesByCodeForTrackedEntities = {};
-        trackedEntities?.forEach((trackedEntity) => {
-            const teiId = trackedEntity.trackedEntity;
-            // const enrollmentId = trackedEntity.enrollments?.[0]?.enrollment;
-            // const orgUnitId = trackedEntity.orgUnit;
-            const enrollmentAttributes = trackedEntity.attributes;
-
-            if (enrollmentAttributes?.length > 0) {
-                const mappedAttributesByCode = mapAttributesByCode(enrollmentAttributes);
-                mappedAttributesByCodeForTrackedEntities[teiId] = mappedAttributesByCode;
-            }
-        });
-        setAttributes(mappedAttributesByCodeForTrackedEntities);
-    }, [trackedEntities]);
 
 
     if (!hasAuthority) {
@@ -154,11 +162,15 @@ export const SelectAction = ({
 
         setSelectedAction(actionClicked);
         setShowConfirmation(!hasFields && (smsCommand || updateTEA));
+        setShowActionPage(hasFields);
+
+
         // todo: remove this
         return null;
     };
 
-    /* const onValueChange =
+
+    const onValueChange =
     fieldId =>
         (value, isValid = true) => {
             fieldsValid.current = {
@@ -171,12 +183,17 @@ export const SelectAction = ({
                 true,
             );
 
-            // setIsFormValid(newIsFormValid);
+            setIsFormValid(newIsFormValid);
             setFormValues(prev => ({
                 ...prev,
                 [fieldId]: value,
             }));
-        }; */
+        };
+    const handleCloseActionPage = () => {
+        setShowActionPage(false);
+        setSelectedAction(null);
+        setOption(null);
+    };
 
     const runUpdateTEA = async (teiId, orgUnitId) => {
         if (!selectedAction) {
@@ -184,9 +201,7 @@ export const SelectAction = ({
         }
 
         try {
-            const {
-                updateTEA: { attribute, formValueField },
-            } = selectedAction;
+            const { attribute, formValueField } = selectedAction?.updateTEA ?? {};
 
             const teaService = new TEAService(mutate);
             const response = await teaService.updateTEA(
@@ -217,7 +232,7 @@ export const SelectAction = ({
             const response = await smsCommandService.sendCommand(
                 teiId,
                 selectedAction?.smsCommand,
-                null, // formValues,
+                formValues,
             );
 
             if (response.ok) {
@@ -269,7 +284,7 @@ export const SelectAction = ({
                 dense
                 onChange={handleSelectionChange}
                 placeholder={action.title}
-                inputWidth="150px"
+                inputWidth="200px"
                 selected={option}
             >
 
@@ -296,7 +311,16 @@ export const SelectAction = ({
                 message={buildConfirmationMessage(selectedAction, null)}
                 loading={showLoading}
             />
-
+            {selectedAction ? (
+                <FormActionModal
+                    show={showActionPage}
+                    onClose={handleCloseActionPage}
+                    selectedAction={selectedAction}
+                    onValueChange={onValueChange}
+                    setShowConfirmation={setShowConfirmation}
+                    isFormValid={isFormValid}
+                />
+            ) : null}
         </>
     );
 };

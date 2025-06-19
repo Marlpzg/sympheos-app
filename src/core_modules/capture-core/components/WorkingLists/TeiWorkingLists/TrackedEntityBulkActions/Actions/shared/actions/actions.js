@@ -1,3 +1,5 @@
+// @flow
+
 import i18n from '@dhis2/d2-i18n';
 import { actionTypes } from './actionTypes';
 import { ATTRIBUTE_IDS, FIELD_COMPONENT_TYPE, OPTION_SET_IDS, SMS_COMMANDS } from '../constants';
@@ -7,7 +9,40 @@ const confirmationMessage = i18n.t(
     'Are you sure you want to proceed with this operation?',
 );
 
-export const actions = (props, attributes) => ({
+export type Action = {|
+    +title: string,
+    +confirmationMessage: string,
+    +smsCommand?: string,
+    +disabled?: boolean,
+    +updateTEA?: ?{|
+        attribute: string,
+        formValueField: string,
+    |},
+    +fields?: {|
+        +id: string,
+        +formValueField: string,
+        +type: string,
+        +label: string,
+        +params: { +required: boolean },
+        +query: {
+            optionSets: Array<{ id: string, name: string }>,
+            attributes: Array<{ id: string, name: string }>
+        },
+        +defaultValueField: string
+    |}[],
+|};
+
+type Attribute = {
+    value?: string,
+    // Add other possible properties if they exist
+};
+
+type Attributes = {
+    [key: string]: Attribute | void;
+};
+
+
+export const actions = (props: {enrollmentId: string}, attributes: Attributes): {[key: string]: Action} => ({
     [actionTypes.requests.sendInfo]: {
         title: i18n.t('Send Info'),
         confirmationMessage,

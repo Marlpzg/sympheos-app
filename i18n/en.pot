@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-19T12:45:24.673Z\n"
-"PO-Revision-Date: 2025-06-19T12:45:24.674Z\n"
+"POT-Creation-Date: 2025-06-19T13:50:16.870Z\n"
+"PO-Revision-Date: 2025-06-19T13:50:16.870Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1796,6 +1796,9 @@ msgstr "An error occurred when completing the enrollments"
 msgid "An unknown error occurred when completing enrollments"
 msgstr "An unknown error occurred when completing enrollments"
 
+msgid "OK"
+msgstr "OK"
+
 msgid "Confirm"
 msgstr "Confirm"
 
@@ -1891,6 +1894,12 @@ msgstr "Security"
 
 msgid "Resend Auth Key"
 msgstr "Resend Auth Key"
+
+msgid "No data found"
+msgstr "No data found"
+
+msgid "Loading options"
+msgstr "Loading options"
 
 msgid "The operation was successful"
 msgstr "The operation was successful"
