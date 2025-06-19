@@ -4,8 +4,9 @@
             "icon": "FiHome",
             "id": "overview",
             "link": "/dashboard/overview",
-            "title": { 
-                "default": "Overview"
+            "title": {
+                "default": "Overview",
+                "fr": "Vue d'ensemble"
             },
             "type": "SUPERSET"
         },
@@ -14,16 +15,18 @@
                 {
                     "id": "results_overview",
                     "link": "/dashboard/resultsOverview",
-                    "title": { 
-                        "default": "Overview"
+                    "title": {
+                        "default": "Overview",
+                        "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET"
                 },
                 {
                     "id": "results_mpima_overview",
                     "link": "/dashboard/mPimaOverview",
-                    "title": { 
-                        "default": "M-PIMA Overview"
+                    "title": {
+                        "default": "M-PIMA Overview",
+                        "fr": "Vue d'ensemble M-PIMA"
                     },
                     "type": "SUPERSET"
                 },
@@ -31,16 +34,18 @@
                     "id": "results_mpima_data",
                     "key": "Fbb3mcEPeqP",
                     "link": "/?programId=Fbb3mcEPeqP&all",
-                    "title": { 
-                        "default": "M-PIMA Data"
+                    "title": {
+                        "default": "M-PIMA Data",
+                        "fr": "Données M-PIMA"
                     },
                     "type": "CAPTURE"
                 },
                 {
                     "id": "results_pima_overview",
                     "link": "/dashboard/pimaOverview",
-                    "title": { 
-                        "default": "PIMA Overview"
+                    "title": {
+                        "default": "PIMA Overview",
+                        "fr": "Vue d'ensemble PIMA"
                     },
                     "type": "SUPERSET"
                 },
@@ -48,8 +53,9 @@
                     "id": "results_pima_data",
                     "key": "wlOqXvONeU4",
                     "link": "/?programId=wlOqXvONeU4&all",
-                    "title": { 
-                        "default": "PIMA Data"
+                    "title": {
+                        "default": "PIMA Data",
+                        "fr": "Données PIMA"
                     },
                     "type": "CAPTURE"
                 }
@@ -57,8 +63,9 @@
             "icon": "FiCpu",
             "id": "results",
             "key": "results",
-            "title": { 
-                "default": "Results"
+            "title": {
+                "default": "Results",
+                "fr": "Résultats"
             }
         },
         {
@@ -66,8 +73,9 @@
                 {
                     "id": "device_overview",
                     "link": "/dashboard/deviceOverview",
-                    "title": { 
-                        "default": "Overview"
+                    "title": {
+                        "default": "Overview",
+                        "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET"
                 },
@@ -75,8 +83,9 @@
                     "id": "device_r1",
                     "key": "emmnFREJ5n4",
                     "link": "/?programId=emmnFREJ5n4&all",
-                    "title": { 
-                        "default": "Connect R1"
+                    "title": {
+                        "default": "Connect R1",
+                        "fr": "Connect R1"
                     },
                     "type": "CAPTURE"
                 },
@@ -84,8 +93,9 @@
                     "id": "device_netcom",
                     "key": "WoLFKfl21Om",
                     "link": "/?programId=WoLFKfl21Om&all",
-                    "title": { 
-                        "default": "NetCom"
+                    "title": {
+                        "default": "NetCom",
+                        "fr": "NetCom"
                     },
                     "type": "CAPTURE"
                 },
@@ -93,8 +103,9 @@
                     "id": "device_sms_printer",
                     "key": "JrKyubafFtp",
                     "link": "/?programId=JrKyubafFtp&all",
-                    "title": { 
-                        "default": "SMS Printer"
+                    "title": {
+                        "default": "SMS Printer",
+                        "fr": "Imprimante SMS"
                     },
                     "type": "CAPTURE"
                 },
@@ -102,8 +113,9 @@
                     "id": "device_pima",
                     "key": "vEK0nUEtkI6",
                     "link": "/?programId=vEK0nUEtkI6&all",
-                    "title": { 
-                        "default": "PIMA"
+                    "title": {
+                        "default": "PIMA",
+                        "fr": "PIMA"
                     },
                     "type": "CAPTURE"
                 },
@@ -111,8 +123,9 @@
                     "id": "device_mpima",
                     "key": "H8gFGCN7pgf",
                     "link": "/?programId=H8gFGCN7pgf&all",
-                    "title": { 
-                        "default": "M-PIMA"
+                    "title": {
+                        "default": "M-PIMA",
+                        "fr": "M-PIMA"
                     },
                     "type": "CAPTURE"
                 }
@@ -120,8 +133,9 @@
             "icon": "FiClipboard",
             "id": "device_mng",
             "key": "device_mng",
-            "title": { 
-                "default": "Device Manager"
+            "title": {
+                "default": "Device Manager",
+                "fr": "Gestionnaire d'appareils"
             }
         },
         {
@@ -129,8 +143,9 @@
                 {
                     "id": "stock_overview",
                     "link": "/dashboard/stockOverview",
-                    "title": { 
-                        "default": "Overview"
+                    "title": {
+                        "default": "Overview",
+                        "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET"
                 },
@@ -138,16 +153,18 @@
                     "id": "stock_movements",
                     "key": "Q9kbGp9fDua",
                     "link": "/?programId=Q9kbGp9fDua&all",
-                    "title": { 
-                        "default": "Movements"
+                    "title": {
+                        "default": "Movements",
+                        "fr": "Déplacements"
                     },
                     "type": "CAPTURE"
                 },
                 {
                     "id": "stock_products",
                     "link": "/dashboard/stockProducts",
-                    "title": { 
-                        "default": "Products"
+                    "title": {
+                        "default": "Products",
+                        "fr": "Produits"
                     },
                     "type": "REDIRECT"
                 }
@@ -155,8 +172,9 @@
             "icon": "FiBox",
             "id": "stock_mng",
             "key": "stock_mng",
-            "title": { 
-                "default": "Stock Manager"
+            "title": {
+                "default": "Stock Manager",
+                "fr": "Gestionnaire de stocks"
             }
         },
         {
@@ -164,53 +182,60 @@
                 {
                     "id": "admin_overview",
                     "link": "/dashboard/adminOverview",
-                    "title": { 
-                        "default": "Overview"
+                    "title": {
+                        "default": "Overview",
+                        "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET"
                 },
                 {
                     "id": "admin_settings",
                     "link": "/settings",
-                    "title": { 
-                        "default": "Settings"
+                    "title": {
+                        "default": "Settings",
+                        "fr": "Paramètres"
                     },
                     "type": "NAVIGATE"
                 },
                 {
                     "id": "admin_accounts",
                     "key": "accounts",
-                    "title": { 
-                        "default": "Accounts"
+                    "title": {
+                        "default": "Accounts",
+                        "fr": "Comptes"
                     }
                 },
                 {
                     "id": "admin_profiles",
                     "key": "profiles",
-                    "title": { 
-                        "default": "Profiles"
+                    "title": {
+                        "default": "Profiles",
+                        "fr": "Profils"
                     }
                 },
                 {
                     "id": "admin_locations",
                     "key": "locations",
-                    "title": { 
-                        "default": "Locations"
+                    "title": {
+                        "default": "Locations",
+                        "fr": "Sites"
                     }
                 },
                 {
                     "id": "admin_users",
                     "key": "users",
-                    "title": { 
-                        "default": "Users"
+                    "title": {
+                        "default": "Users",
+                        "fr": "Utilisateurs"
                     }
                 }
             ],
             "icon": "FiSettings",
             "id": "admin",
             "key": "admin",
-            "title": { 
-                "default": "Admin"
+            "title": {
+                "default": "Admin",
+                "fr": "Administration"
             }
         }
     ]
