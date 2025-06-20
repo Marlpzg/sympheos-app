@@ -34,20 +34,21 @@ const styles = {
 
 type Props = {|
     programId: string,
-    setShowAccessible: () => void,
+        setShowAccessible: () => void,
     ...CssClasses,
 |}
 
 const WithoutOrgUnitSelectedMessagePlain = ({ programId, setShowAccessible, classes }: Props) => {
     const { program, programType } = useProgramInfo(programId);
+    const programName = program ? program.name : null;
     const IncompleteSelectionMessage = useMemo(() => (programType === programTypes.TRACKER_PROGRAM ? (
         i18n.t('Or see all records accessible to you in {{program}} ', {
-            program: program?.name,
+            program: programName,
             interpolation: { escapeValue: false },
         })
     ) : i18n.t('Or see all events accessible to you in {{program}}',
-        { program: program?.name, interpolation: { escapeValue: false } })),
-    [program?.name, programType]);
+        { program: programName, interpolation: { escapeValue: false } })),
+    [programName, programType]);
 
     return (
         <div

@@ -18,7 +18,10 @@ export function convertIsoToLocalCalendar(isoDate: ?string): string {
         return '';
     }
 
-    const momentDate = moment(isoDate).locale('en');
+    isoDate = isoDate.replace('Z', ''); // Remove the trailing 'Z' to avoid timezone issues
+    const time = isoDate.split('T')[1]?.split('.')[0] || '00:00:00'; // Default to midnight if no time is provided
+
+    const momentDate = moment(isoDate);
     if (!momentDate.isValid()) {
         return '';
     }
@@ -31,7 +34,9 @@ export function convertIsoToLocalCalendar(isoDate: ?string): string {
     const { year, eraYear, month, day } = convertFromIso8601(formattedIsoDate, calendar);
     const localYear = calendar === 'ethiopian' ? eraYear : year;
 
-    return dateFormat === 'DD-MM-YYYY'
+    const resultDate = dateFormat === 'DD-MM-YYYY'
         ? `${padWithZeros(day, 2)}-${padWithZeros(month, 2)}-${padWithZeros(localYear, 4)}`
         : `${padWithZeros(localYear, 4)}-${padWithZeros(month, 2)}-${padWithZeros(day, 2)}`;
+
+    return `${resultDate}T${time}`;
 }
