@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-15T01:02:21.979Z\n"
-"PO-Revision-Date: 2025-06-15T01:02:21.979Z\n"
+"POT-Creation-Date: 2025-06-19T13:50:16.870Z\n"
+"PO-Revision-Date: 2025-06-19T13:50:16.870Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1566,13 +1566,6 @@ msgstr "You do not have access to remove the link and delete the linked event"
 msgid "An error occurred while loading the widget."
 msgstr "An error occurred while loading the widget."
 
-msgid ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-msgstr ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-
 msgid "Scheduled"
 msgstr "Scheduled"
 
@@ -1803,65 +1796,167 @@ msgstr "An error occurred when completing the enrollments"
 msgid "An unknown error occurred when completing enrollments"
 msgstr "An unknown error occurred when completing enrollments"
 
-msgid "You do not have access to delete enrollments"
-msgstr "You do not have access to delete enrollments"
+msgid "OK"
+msgstr "OK"
 
-msgid "Delete enrollments"
-msgstr "Delete enrollments"
+msgid "Confirm"
+msgstr "Confirm"
 
-msgid "Delete selected enrollments"
-msgstr "Delete selected enrollments"
+msgid "Are you sure you want to proceed?"
+msgstr "Are you sure you want to proceed?"
 
-msgid "An error occurred while loading the selected enrollments. Please try again."
-msgstr "An error occurred while loading the selected enrollments. Please try again."
+msgid "Are you sure you want to proceed with this operation?"
+msgstr "Are you sure you want to proceed with this operation?"
 
-msgid ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
-msgstr ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
+msgid "Send Info"
+msgstr "Send Info"
 
-msgid "Active enrollments ({{count}})"
-msgid_plural "Active enrollments ({{count}})"
-msgstr[0] "Active enrollments ({{count}})"
-msgstr[1] "Active enrollments ({{count}})"
+msgid "Request Log Files"
+msgstr "Request Log Files"
 
-msgid "Completed enrollments ({{count}})"
-msgid_plural "Completed enrollments ({{count}})"
-msgstr[0] "Completed enrollments ({{count}})"
-msgstr[1] "Completed enrollments ({{count}})"
+msgid "Device reboot"
+msgstr "Device reboot"
 
-msgid "Cancelled enrollments ({{count}})"
-msgid_plural "Cancelled enrollments ({{count}})"
-msgstr[0] "Cancelled enrollments ({{count}})"
-msgstr[1] "Cancelled enrollments ({{count}})"
+msgid "Update Instance"
+msgstr "Update Instance"
 
-msgid "Delete {{count}} enrollment"
-msgid_plural "Delete {{count}} enrollment"
-msgstr[0] "Delete {{count}} enrollment"
-msgstr[1] "Delete {{count}} enrollments"
+msgid "From URL"
+msgstr "From URL"
 
-msgid "An error occurred when deleting enrollments"
-msgstr "An error occurred when deleting enrollments"
+msgid "To URL"
+msgstr "To URL"
 
-msgid "Delete {{ trackedEntityName }} with all enrollments"
-msgstr "Delete {{ trackedEntityName }} with all enrollments"
+msgid "Update Profile"
+msgstr "Update Profile"
 
-msgid "Delete {{count}} {{ trackedEntityName }}"
-msgid_plural "Delete {{count}} {{ trackedEntityName }}"
-msgstr[0] "Delete {{count}} {{ trackedEntityName }}"
-msgstr[1] "Delete {{count}} {{ trackedEntityName }}"
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
 
-msgid ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
-msgstr ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
+msgid "Profiles"
+msgstr "Profiles"
 
-msgid "An error occurred while deleting the records"
-msgstr "An error occurred while deleting the records"
+msgid "Overwrite Firmware"
+msgstr "Overwrite Firmware"
+
+msgid "Firmware"
+msgstr "Firmware"
+
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
+msgid "APN"
+msgstr "APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
+
+msgid "Band Priority"
+msgstr "Band Priority"
+
+msgid "Auth Key"
+msgstr "Auth Key"
+
+msgid "Please insert a valid Auth Key"
+msgstr "Please insert a valid Auth Key"
+
+msgid "Resend SSH Key"
+msgstr "Resend SSH Key"
+
+msgid "SSH Key"
+msgstr "SSH Key"
+
+msgid "Please insert a valid SSH Key"
+msgstr "Please insert a valid SSH Key"
+
+msgid "Requests"
+msgstr "Requests"
+
+msgid "Send info"
+msgstr "Send info"
+
+msgid "Request log files"
+msgstr "Request log files"
+
+msgid "Reset Modem"
+msgstr "Reset Modem"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Security"
+msgstr "Security"
+
+msgid "Resend Auth Key"
+msgstr "Resend Auth Key"
+
+msgid "No data found"
+msgstr "No data found"
+
+msgid "Loading options"
+msgstr "Loading options"
+
+msgid "The operation was successful"
+msgstr "The operation was successful"
+
+msgid "There was a problem running the selected operation"
+msgstr "There was a problem running the selected operation"
+
+msgid "Requests"
+msgstr "Requests"
+
+msgid "Send Info"
+msgstr "Send Info"
+
+msgid "Are you sure you want to send info to the selected devices?"
+msgstr "Are you sure you want to send info to the selected devices?"
+
+msgid "Confirm"
+msgstr "Confirm"
+
+msgid "Are you sure you want to proceed?"
+msgstr "Are you sure you want to proceed?"
+
+msgid "Task 1"
+msgstr "Task 1"
+
+msgid "Tasks"
+msgstr "Tasks"
+
+msgid "Task action"
+msgstr "Task action"
+
+msgid "Update Location"
+msgstr "Update Location"
+
+msgid "Update Profile"
+msgstr "Update Profile"
+
+msgid "Overwrite Profile"
+msgstr "Overwrite Profile"
+
+msgid "Update Firmware"
+msgstr "Update Firmware"
+
+msgid "Clear Requested Firmware"
+msgstr "Clear Requested Firmware"
+
+msgid "Update APN"
+msgstr "Update APN"
+
+msgid "Update Band Priority"
+msgstr "Update Band Priority"
+
+msgid "Updates"
+msgstr "Updates"
+
+msgid "Update action"
+msgstr "Update action"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"
@@ -1897,9 +1992,6 @@ msgstr "Share view..."
 
 msgid "Do you really want to delete the '{{templateName}}' view?"
 msgstr "Do you really want to delete the '{{templateName}}' view?"
-
-msgid "Confirm"
-msgstr "Confirm"
 
 msgid "Save As view"
 msgstr "Save As view"
