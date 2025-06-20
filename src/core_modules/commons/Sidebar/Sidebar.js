@@ -71,7 +71,7 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true, loca
     </div>);
 };
 
-const Sidebar = () => {
+export const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [displayMenu, setDisplayMenu] = useState();
     const location = useLocation();
@@ -192,5 +192,3 @@ const Sidebar = () => {
         </aside>
     );
 };
-
-export default Sidebar;

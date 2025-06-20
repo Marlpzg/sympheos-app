@@ -1,7 +1,7 @@
 {
     "name": "sympheos",
     "homepage": "./dashboard/overview",
-    "version": "0.3.0-SNAPSHOT",
+    "version": "0.3.0",
     "cacheVersion": "1",
     "license": "BSD-3-Clause",
     "private": true,
@@ -64,8 +64,7 @@
         "styled-jsx": "^4",
         "swr": "^2.3.3",
         "typeface-roboto": "^0.0.75",
-        "uuid": "^9.0.0",
-        "ky": "^1.8.1"
+        "uuid": "^9.0.0"
     },
     "scripts": {
         "start": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"d2-app-scripts start --proxy https://dev.account.sympheos.baosystems.com\"",

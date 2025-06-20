@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-19T13:50:16.870Z\n"
-"PO-Revision-Date: 2025-06-19T13:50:16.870Z\n"
+"POT-Creation-Date: 2025-06-20T02:30:48.905Z\n"
+"PO-Revision-Date: 2025-06-20T02:30:48.905Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1906,57 +1906,6 @@ msgstr "The operation was successful"
 
 msgid "There was a problem running the selected operation"
 msgstr "There was a problem running the selected operation"
-
-msgid "Requests"
-msgstr "Requests"
-
-msgid "Send Info"
-msgstr "Send Info"
-
-msgid "Are you sure you want to send info to the selected devices?"
-msgstr "Are you sure you want to send info to the selected devices?"
-
-msgid "Confirm"
-msgstr "Confirm"
-
-msgid "Are you sure you want to proceed?"
-msgstr "Are you sure you want to proceed?"
-
-msgid "Task 1"
-msgstr "Task 1"
-
-msgid "Tasks"
-msgstr "Tasks"
-
-msgid "Task action"
-msgstr "Task action"
-
-msgid "Update Location"
-msgstr "Update Location"
-
-msgid "Update Profile"
-msgstr "Update Profile"
-
-msgid "Overwrite Profile"
-msgstr "Overwrite Profile"
-
-msgid "Update Firmware"
-msgstr "Update Firmware"
-
-msgid "Clear Requested Firmware"
-msgstr "Clear Requested Firmware"
-
-msgid "Update APN"
-msgstr "Update APN"
-
-msgid "Update Band Priority"
-msgstr "Update Band Priority"
-
-msgid "Updates"
-msgstr "Updates"
-
-msgid "Update action"
-msgstr "Update action"
 
 msgid "Working list could not be updated"
 msgstr "Working list could not be updated"
