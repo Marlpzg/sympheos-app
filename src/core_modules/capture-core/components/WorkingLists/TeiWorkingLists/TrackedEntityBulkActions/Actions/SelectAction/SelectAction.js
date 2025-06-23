@@ -245,33 +245,45 @@ export const SelectAction = ({
         }
     };
 
-    // eslint-disable-next-line complexity
     const handleOnModalConfirm = () => {
         if (!selectedAction) {
             return;
         }
-        const { smsCommand, updateTEA } = selectedAction;
-        setShowLoading(true);
 
-        const promises = Object.keys(selectedRows).filter(teiId => selectedRows[teiId]).map(async (teiId) => {
-            const { orgUnit: orgUnitId, enrollments } = trackedEntities?.find(trackedEntity => trackedEntity.trackedEntity === teiId) ?? {};
-            const enrollmentId = enrollments?.[0]?.enrollment;
-            if (updateTEA) {
-                await runUpdateTEA(teiId, orgUnitId);
-            }
+        const executeAction = async () => {
+            const { smsCommand, updateTEA } = selectedAction;
+            setShowLoading(true);
 
-            if (smsCommand) {
-                await runSMSCommand(teiId, orgUnitId, enrollmentId);
+            try {
+                const promises = Object.keys(selectedRows)
+                    .filter(teiId => selectedRows[teiId])
+                    .map(async (teiId) => {
+                        const { orgUnit: orgUnitId, enrollments } =
+                            trackedEntities?.find(trackedEntity => trackedEntity.trackedEntity === teiId) ?? {};
+                        const enrollmentId = enrollments?.[0]?.enrollment;
+
+                        if (updateTEA) {
+                            await runUpdateTEA(teiId, orgUnitId);
+                        }
+
+                        if (smsCommand) {
+                            await runSMSCommand(teiId, orgUnitId, enrollmentId);
+                        }
+                    });
+
+                await Promise.all(promises);
+                showSuccessAlert();
+            } finally {
+                setShowLoading(false);
+                setShowConfirmation(false);
+                onActionDone();
             }
+        };
+
+        // init async function
+        executeAction().catch(() => {
+            // Erros is managed in executeAction
         });
-
-        try {
-            Promise.all(promises);
-        } finally {
-            setShowLoading(false);
-            setShowConfirmation(false);
-            onActionDone();
-        }
     };
 
     const handleOnModalClose = () => {
@@ -293,7 +305,6 @@ export const SelectAction = ({
                         key={act.type}
                         label={act.label}
                         value={act.type}
-                        disabled={act.disabled}
                     />
                     // +type: ActionType,
                     // +blackList?: Array<InstanceType>,
