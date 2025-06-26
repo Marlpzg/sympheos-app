@@ -20,14 +20,14 @@ const styles = () => ({
 const ActionButtonsPlain = ({
     onNewClick,
     onNewClickWithoutProgramId,
-    onFindClick,
-    onFindClickWithoutProgramId,
+    // onFindClick,
+    // onFindClickWithoutProgramId,
     selectedProgramId,
     classes,
     openConfirmDialog,
 }: PlainProps & CssClasses) => {
-    const { trackedEntityName, scopeType, programName } = useScopeInfo(selectedProgramId);
-    const [openSearch, setOpenSearch] = useState(false);
+    const { trackedEntityName, scopeType, /* programName */ } = useScopeInfo(selectedProgramId);
+    const [/* openSearch */, setOpenSearch] = useState(false);
 
     useEffect(() => {
         setOpenSearch(false);
