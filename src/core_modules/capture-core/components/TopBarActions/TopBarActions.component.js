@@ -74,7 +74,7 @@ const ActionButtonsPlain = ({
                 </SplitButton>
             )}
 
-            {scopeType !== scopeTypes.TRACKER_PROGRAM ? (
+            {/* scopeType !== scopeTypes.TRACKER_PROGRAM ? (
                 <Button
                     small
                     secondary
@@ -113,7 +113,7 @@ const ActionButtonsPlain = ({
                 >
                     {i18n.t('Search')}
                 </DropdownButton>
-            )}
+            ) */}
         </div>
     );
 };
