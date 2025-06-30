@@ -20,7 +20,11 @@
                         "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "results_mpima_overview",
@@ -30,7 +34,11 @@
                         "fr": "Vue d'ensemble M-PIMA"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "results_mpima_data",
@@ -41,7 +49,11 @@
                         "fr": "Données M-PIMA"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "results_pima_overview",
@@ -51,7 +63,11 @@
                         "fr": "Vue d'ensemble PIMA"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "results_pima_data",
@@ -62,7 +78,11 @@
                         "fr": "Données PIMA"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 }
             ],
             "icon": "FiCpu",
@@ -72,7 +92,11 @@
                 "default": "Results",
                 "fr": "Résultats"
             },
-            "userGroups": []
+            "userGroups": [
+                "sA9xka3Bg4g",
+                "ZBgruZLU1ys",
+                "O36vdYF6D5d"
+            ]
         },
         {
             "children": [
@@ -84,7 +108,12 @@
                         "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "sA9xka3Bg4g",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "device_r1",
@@ -95,7 +124,11 @@
                         "fr": "Connect R1"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "device_netcom",
@@ -106,7 +139,11 @@
                         "fr": "NetCom"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "device_sms_printer",
@@ -117,7 +154,11 @@
                         "fr": "Imprimante SMS"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "device_pima",
@@ -128,7 +169,12 @@
                         "fr": "PIMA"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d",
+                        "sA9xka3Bg4g"
+                    ]
                 },
                 {
                     "id": "device_mpima",
@@ -139,7 +185,12 @@
                         "fr": "M-PIMA"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d",
+                        "sA9xka3Bg4g"
+                    ]
                 }
             ],
             "icon": "FiClipboard",
@@ -149,7 +200,12 @@
                 "default": "Device Manager",
                 "fr": "Gestionnaire d'appareils"
             },
-            "userGroups": []
+            "userGroups": [
+                "dsjDVYKkq2a",
+                "ZBgruZLU1ys",
+                "O36vdYF6D5d",
+                "sA9xka3Bg4g"
+            ]
         },
         {
             "children": [
@@ -161,7 +217,10 @@
                         "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "AjRb3arkiFO",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "stock_movements",
@@ -172,7 +231,10 @@
                         "fr": "Déplacements"
                     },
                     "type": "CAPTURE",
-                    "userGroups": []
+                    "userGroups": [
+                        "AjRb3arkiFO",
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "stock_products",
@@ -182,7 +244,10 @@
                         "fr": "Produits"
                     },
                     "type": "REDIRECT",
-                    "userGroups": []
+                    "userGroups": [
+                        "AjRb3arkiFO",
+                        "O36vdYF6D5d"
+                    ]
                 }
             ],
             "icon": "FiBox",
@@ -192,7 +257,10 @@
                 "default": "Stock Manager",
                 "fr": "Gestionnaire de stocks"
             },
-            "userGroups": []
+            "userGroups": [
+                "AjRb3arkiFO",
+                "O36vdYF6D5d"
+            ]
         },
         {
             "children": [
@@ -204,7 +272,9 @@
                         "fr": "Vue d'ensemble"
                     },
                     "type": "SUPERSET",
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "admin_settings",
@@ -214,7 +284,9 @@
                         "fr": "Paramètres"
                     },
                     "type": "NAVIGATE",
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "admin_accounts",
@@ -223,7 +295,9 @@
                         "default": "Accounts",
                         "fr": "Comptes"
                     },
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "admin_profiles",
@@ -232,7 +306,9 @@
                         "default": "Profiles",
                         "fr": "Profils"
                     },
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "admin_locations",
@@ -241,7 +317,9 @@
                         "default": "Locations",
                         "fr": "Sites"
                     },
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 },
                 {
                     "id": "admin_users",
@@ -250,7 +328,9 @@
                         "default": "Users",
                         "fr": "Utilisateurs"
                     },
-                    "userGroups": []
+                    "userGroups": [
+                        "O36vdYF6D5d"
+                    ]
                 }
             ],
             "icon": "FiSettings",
@@ -260,7 +340,9 @@
                 "default": "Admin",
                 "fr": "Administration"
             },
-            "userGroups": []
+            "userGroups": [
+                "O36vdYF6D5d"
+            ]
         }
     ]
 }
