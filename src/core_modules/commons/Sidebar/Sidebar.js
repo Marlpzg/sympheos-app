@@ -188,10 +188,14 @@ export const Sidebar = () => {
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: isCollapsed ? 'center' : 'flex-end',
+                    justifyContent: isCollapsed ? 'center' : 'space-between',
                     marginBottom: '1rem',
                 }}
             >
+                {!isCollapsed && <p>
+                    Sympheos App<br />
+                    v{process.env.REACT_APP_VERSION}
+                </p>}
                 <button
                     onClick={toggleCollapse}
                     style={{
@@ -200,6 +204,8 @@ export const Sidebar = () => {
                         color: 'white',
                         cursor: 'pointer',
                         fontSize: '1.2rem',
+                        display: 'flex',
+                        alignItems: 'center',
                     }}
                 >
                     {isCollapsed ? <FiChevronRight /> : <FiChevronLeft />}
