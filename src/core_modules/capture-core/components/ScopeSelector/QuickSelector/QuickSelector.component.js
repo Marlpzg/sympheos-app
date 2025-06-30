@@ -21,13 +21,13 @@ export const QuickSelector = ({
     onResetAllCategoryOptions,
     formIsOpen,
     children,
-    onStartAgain,
+    // onStartAgain,
     isReadOnlyOrgUnit,
     orgUnitTooltip,
 }: Props) => (
     <SelectorBar
         disableClearSelections={!selectedProgramId && !selectedOrgUnitId}
-        onClearSelectionClick={() => onStartAgain()}
+        // onClearSelectionClick={() => onStartAgain()}
     >
         <ProgramSelector
             selectedProgramId={selectedProgramId}

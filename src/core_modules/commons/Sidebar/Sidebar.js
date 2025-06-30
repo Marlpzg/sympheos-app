@@ -3,29 +3,10 @@ import { CircularLoader } from '@dhis2/ui';
 import { Link, useLocation } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useUserLocale } from 'capture-core/utils/localeData/useUserLocale';
-import { useDataStore } from '../../../hooks/useDataStore';
+import { useDataStore, useUserUserGroups } from '../../../hooks';
 import menu from './menuOptions';
-import { LinkTypes } from './constants';
 import { getIcon } from '../../../utils';
-
-const isActive = (location, item) => {
-    const comparator = item.key || item.link;
-    if (item.type === LinkTypes.CAPTURE) {
-        const searchParams = location.search.split('?');
-        const params = searchParams[searchParams.length - 1].split('&');
-
-        let flag = false;
-        params.forEach((param) => {
-            const [paramKey, paramValue] = param.split('=');
-            if (paramKey === 'programId' && paramValue === comparator) {
-                flag = true;
-            }
-        });
-        return flag;
-    }
-
-    return comparator === (location.pathname + location.search);
-};
+import { userHasAccess, optionIsActive, isMenuReady, menuHasErrors } from './utils';
 
 const buildMenuItemContent = (item, isCollapsed, locale) => {
     const Icon = getIcon(item.icon);
@@ -36,7 +17,15 @@ const buildMenuItemContent = (item, isCollapsed, locale) => {
     </>);
 };
 
-const buildItemComponent = ({ location, isCollapsed, item, isHeader = true, locale = 'default' }) => {
+const buildItemComponent = (
+    {
+        location,
+        isCollapsed,
+        item,
+        isHeader = true,
+        locale = 'default',
+    },
+) => {
     const padding = isHeader ? '0.5rem' : '0.25rem';
 
     if (item.link) {
@@ -49,7 +38,7 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true, loca
                 padding,
                 color: 'white',
                 textDecoration: 'none',
-                backgroundColor: isActive(location, item) ? '#374151' : 'transparent',
+                backgroundColor: optionIsActive(location, item) ? '#374151' : 'transparent',
                 borderRadius: '6px',
             }}
         >
@@ -71,11 +60,51 @@ const buildItemComponent = ({ location, isCollapsed, item, isHeader = true, loca
     </div>);
 };
 
+const buildChildren = ({
+    item,
+    userGroups,
+    locale,
+    location,
+}) => (<ul className={'list_sidebar'}>
+    {item.children.reduce((childItems, child) => {
+        if (
+            child.userGroups &&
+            !userHasAccess(child.userGroups, userGroups)
+        ) {
+            return childItems;
+        }
+        childItems.push(<li
+            key={child.id || child.title}
+            style={{
+                cursor: 'pointer',
+            }}
+        >
+            {buildItemComponent({
+                location,
+                isCollapsed: false,
+                item: child,
+                isHeader: false,
+                locale,
+            })}
+        </li>);
+        return childItems;
+    }, [])}
+</ul>);
+
 export const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [displayMenu, setDisplayMenu] = useState();
     const location = useLocation();
-    const { locale } = useUserLocale();
+    const {
+        locale,
+        isLoading: localeLoading,
+        isError: localeError,
+    } = useUserLocale();
+    const {
+        userGroups,
+        isLoading: userGroupsLoading,
+        isError: userGroupsError,
+    } = useUserUserGroups();
 
     const { storeQuery, storeMutation } = useDataStore({ key: 'sympheosMenu', lazyGet: false });
 
@@ -97,6 +126,51 @@ export const Sidebar = () => {
         }
     }, [storeQuery, storeMutation]);
 
+    const buildMenu = () => {
+        if (!isMenuReady({
+            menuHasContent: !!displayMenu?.menu,
+            storeQueryLoading: storeQuery.loading,
+            localeLoading,
+            userGroupsLoading,
+        }) || menuHasErrors(localeError, userGroupsError)) {
+            return (<></>);
+        }
+
+        return (<ul style={{ listStyle: 'none', padding: 0 }}>
+            {displayMenu.menu.reduce((items, item) => {
+                if (
+                    item.userGroups &&
+                    !userHasAccess(item.userGroups, userGroups)
+                ) {
+                    return items;
+                }
+
+                items.push(<li
+                    key={item.id || item.title}
+                    style={{
+                        marginBottom: '0.5rem',
+                        cursor: 'pointer',
+                    }}
+                >
+                    {buildItemComponent({
+                        location,
+                        isCollapsed,
+                        item,
+                        locale,
+                    })}
+
+                    {!isCollapsed && item.children && buildChildren({
+                        item,
+                        userGroups,
+                        locale,
+                        location,
+                    })}
+                </li>);
+                return items;
+            }, [])}
+        </ul>);
+    };
+
     return (
         <aside
             style={{
@@ -114,10 +188,14 @@ export const Sidebar = () => {
             <div
                 style={{
                     display: 'flex',
-                    justifyContent: isCollapsed ? 'center' : 'flex-end',
+                    justifyContent: isCollapsed ? 'center' : 'space-between',
                     marginBottom: '1rem',
                 }}
             >
+                {!isCollapsed && <p>
+                    Sympheos App<br />
+                    v{process.env.REACT_APP_VERSION}
+                </p>}
                 <button
                     onClick={toggleCollapse}
                     style={{
@@ -126,13 +204,20 @@ export const Sidebar = () => {
                         color: 'white',
                         cursor: 'pointer',
                         fontSize: '1.2rem',
+                        display: 'flex',
+                        alignItems: 'center',
                     }}
                 >
                     {isCollapsed ? <FiChevronRight /> : <FiChevronLeft />}
                 </button>
             </div>
 
-            {storeQuery.loading &&
+            {!isMenuReady({
+                menuHasContent: !!displayMenu?.menu,
+                storeQueryLoading: storeQuery.loading,
+                localeLoading,
+                userGroupsLoading,
+            }) && !menuHasErrors(localeError, userGroupsError) &&
                 <div
                     style={{
                         display: 'flex',
@@ -148,47 +233,7 @@ export const Sidebar = () => {
                     />
                 </div>
             }
-            {!storeQuery.loading && displayMenu?.menu &&
-                <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {displayMenu.menu.map(item => (
-                        <li
-                            key={item.id || item.title}
-                            style={{
-                                marginBottom: '0.5rem',
-                                cursor: 'pointer',
-                            }}
-                        >
-                            {buildItemComponent({
-                                location,
-                                isCollapsed,
-                                item,
-                                locale,
-                            })}
-
-                            {!isCollapsed && item.children && (
-                                <ul className={'list_sidebar'}>
-                                    {item.children.map(child => (
-                                        <li
-                                            key={child.id || child.title}
-                                            style={{
-                                                cursor: 'pointer',
-                                            }}
-                                        >
-                                            {buildItemComponent({
-                                                location,
-                                                isCollapsed,
-                                                item: child,
-                                                isHeader: false,
-                                                locale,
-                                            })}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            }
+            {buildMenu()}
         </aside>
     );
 };

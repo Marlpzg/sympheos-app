@@ -1,7 +1,7 @@
 {
     "name": "sympheos",
     "homepage": "./dashboard/overview",
-    "version": "0.3.1",
+    "version": "1.0.0-SNAPSHOT",
     "cacheVersion": "1",
     "license": "BSD-3-Clause",
     "private": true,
@@ -67,11 +67,12 @@
         "uuid": "^9.0.0"
     },
     "scripts": {
-        "start": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"d2-app-scripts start --proxy https://dev.account.sympheos.baosystems.com\"",
-        "start:global": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"d2-app-scripts start --proxy https://dev.sympheos.baosystems.com\"",
+        "start": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"REACT_APP_VERSION=$npm_package_version d2-app-scripts start --proxy https://dev.account.sympheos.baosystems.com\"",
+        "start:offline": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"REACT_APP_VERSION=$npm_package_version d2-app-scripts start\"",
+        "start:global": "yarn verifyCacheVersion && concurrently --kill-others \"yarn workspaces run build:watch\" \"REACT_APP_VERSION=$npm_package_version d2-app-scripts start --proxy https://dev.sympheos.baosystems.com\"",
         "start:forCypress": "yarn workspaces run build && node scripts/startAppForCypress.js",
-        "build": "yarn verifyCacheVersion && yarn workspaces run build && GENERATE_SOURCEMAP=false d2-app-scripts build && cp ./package.json ./build/app/package.json",
-        "build:standalone": "yarn workspaces run build && GENERATE_SOURCEMAP=false d2-app-scripts build --standalone",
+        "build": "yarn verifyCacheVersion && yarn workspaces run build && GENERATE_SOURCEMAP=false REACT_APP_VERSION=$npm_package_version d2-app-scripts build && cp ./package.json ./build/app/package.json",
+        "build:standalone": "yarn workspaces run build && GENERATE_SOURCEMAP=false process.env.REACT_APP_VERSION d2-app-scripts build --standalone",
         "test": "yarn workspaces run build && d2-app-scripts test",
         "test:debug": "yarn workspaces run build && react-scripts --inspect-brk test --runInBand",
         "jsdoc": "NODE_ENV=development jsdoc -c jsdoc-conf.json",
