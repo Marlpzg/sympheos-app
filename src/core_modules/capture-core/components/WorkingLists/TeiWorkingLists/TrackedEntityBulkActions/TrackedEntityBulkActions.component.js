@@ -25,7 +25,7 @@ export const TrackedEntityBulkActionsComponent = ({
     if (!selectedRowsCount) {
         return null;
     }
-
+    const teiList = [...new Set(Object.keys(selectedRows).filter(row => selectedRows[row]))];
 
     return (
         <BulkActionBar
@@ -36,7 +36,7 @@ export const TrackedEntityBulkActionsComponent = ({
             {tabsDeviceActions.map(action => (
                 !isBlackListed(action) ? (
                     <SelectAction
-                        selectedRows={selectedRows}
+                        selectedRows={teiList}
                         programDataWriteAccess={programDataWriteAccess}
                         programId={programId}
                         onActionDone={onUpdateList}

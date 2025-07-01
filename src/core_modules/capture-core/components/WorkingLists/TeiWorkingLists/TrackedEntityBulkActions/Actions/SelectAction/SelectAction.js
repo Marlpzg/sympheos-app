@@ -20,7 +20,7 @@ import { FormActionModal } from './ FormActionModal';
 
 
 type Props = {
-    selectedRows: { [id: string]: boolean },
+    selectedRows: string[],
     onActionDone: () => void,
     action: TabDeviceAction,
     programId: string,
@@ -90,13 +90,13 @@ export const SelectAction = ({
                             program,
                         ]
                     `.replace(/\s+/g, ''), // eliminamos espacios innecesarios
-                    [filterQueryParam]: Object.keys(selectedRows).join(supportForFeature ? ',' : ';'),
+                    [filterQueryParam]: selectedRows.join(supportForFeature ? ',' : ';'),
                     pageSize: 100,
                 };
             },
         },
         {
-            enabled: Object.keys(selectedRows).length > 0,
+            enabled: selectedRows.length > 0,
             select: (data: any) => {
                 const apiTrackedEntities = handleAPIResponse(REQUESTED_ENTITIES.trackedEntities, data);
                 return apiTrackedEntities;
@@ -255,21 +255,19 @@ export const SelectAction = ({
             setShowLoading(true);
 
             try {
-                const promises = Object.keys(selectedRows)
-                    .filter(teiId => selectedRows[teiId])
-                    .map(async (teiId) => {
-                        const { orgUnit: orgUnitId, enrollments } =
+                const promises = selectedRows.map(async (teiId) => {
+                    const { orgUnit: orgUnitId, enrollments } =
                             trackedEntities?.find(trackedEntity => trackedEntity.trackedEntity === teiId) ?? {};
-                        const enrollmentId = enrollments?.[0]?.enrollment;
+                    const enrollmentId = enrollments?.[0]?.enrollment;
 
-                        if (updateTEA) {
-                            await runUpdateTEA(teiId, orgUnitId);
-                        }
+                    if (updateTEA) {
+                        await runUpdateTEA(teiId, orgUnitId);
+                    }
 
-                        if (smsCommand) {
-                            await runSMSCommand(teiId, orgUnitId, enrollmentId);
-                        }
-                    });
+                    if (smsCommand) {
+                        await runSMSCommand(teiId, orgUnitId, enrollmentId);
+                    }
+                });
 
                 await Promise.all(promises);
                 showSuccessAlert();

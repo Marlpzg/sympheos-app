@@ -27,7 +27,6 @@ export const EventWorkingListsViewMenuSetup = ({
         selectionInProgress,
         toggleRowSelected,
         allRowsAreSelected,
-        removeRowsFromSelection,
     } = useSelectedRowsController({ recordIds: dataSource?.map(data => data.id) });
 
     const customListViewMenuContents: CustomMenuContents = useMemo(() => [{
@@ -61,7 +60,6 @@ export const EventWorkingListsViewMenuSetup = ({
             stage={program.stage}
             onClearSelection={clearSelection}
             onUpdateList={onUpdateList}
-            removeRowsFromSelection={removeRowsFromSelection}
         />
     );
 
