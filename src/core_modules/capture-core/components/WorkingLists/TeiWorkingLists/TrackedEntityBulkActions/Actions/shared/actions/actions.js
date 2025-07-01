@@ -137,6 +137,36 @@ export const actions = (props: {enrollmentId: string}, attributes: Attributes): 
         },
         smsCommand: null,
     },
+    [actionTypes.updates.overwriteStatus]: {
+        title: i18n.t('Overwrite Status'),
+        fields: [
+            {
+                id: 'status_select', // ID of the field (e.g. used as a Key for the component)
+                formValueField: 'requestedStatus', // key for the values object, and what we send in the SMS command request body
+                type: FIELD_COMPONENT_TYPE.SELECT, // Type of component
+                label: i18n.t('Status'), // Label of the component
+                params: {
+                    required: true,
+                },
+                query: {
+                    optionSets: getOptionSetQuery(OPTION_SET_IDS.STATUS),
+                    attributes: getEnrollmentAttributesQuery(props.enrollmentId),
+                },
+                defaultValueField: ATTRIBUTE_IDS.DV_REQUESTED_STATUS,
+                // values: [ // hardcoded values (when no http request is needed to get the values for the component)
+                //   { label: "Firmware v1", value: "1" },
+                //   { label: "Firmware v2", value: "2" },
+                //   { label: "Firmware v3", value: "3" },
+                // ],
+            },
+        ],
+        confirmationMessage,
+        updateTEA: {
+            attribute: ATTRIBUTE_IDS.DV_REQUESTED_STATUS,
+            formValueField: 'requestedStatus',
+        },
+        smsCommand: null,
+    },
     [actionTypes.updates.overwriteFirmware]: {
         title: i18n.t('Overwrite Firmware'),
         fields: [

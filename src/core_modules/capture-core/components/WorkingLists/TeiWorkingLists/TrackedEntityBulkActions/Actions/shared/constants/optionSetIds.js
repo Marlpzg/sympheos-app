@@ -5,4 +5,5 @@ export const OPTION_SET_IDS = {
     FIRMWARE: 'EMjEZtgDEHg',
     UPDATE_INSTANCE_FROM: 'AMILIACT5KR',
     UPDATE_INSTANCE_TO: 'L7rGiW6uWDk',
+    STATUS: 'bJOdSN2z4y7',
 };

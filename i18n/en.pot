@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-06-20T02:30:48.905Z\n"
-"PO-Revision-Date: 2025-06-20T02:30:48.905Z\n"
+"POT-Creation-Date: 2025-07-01T16:07:43.436Z\n"
+"PO-Revision-Date: 2025-07-01T16:07:43.437Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1834,6 +1834,9 @@ msgstr "Overwrite Profile"
 
 msgid "Profiles"
 msgstr "Profiles"
+
+msgid "Overwrite Status"
+msgstr "Overwrite Status"
 
 msgid "Overwrite Firmware"
 msgstr "Overwrite Firmware"
