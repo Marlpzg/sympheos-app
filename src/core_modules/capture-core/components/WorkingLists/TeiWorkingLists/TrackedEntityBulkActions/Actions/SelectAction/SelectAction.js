@@ -48,7 +48,6 @@ export const SelectAction = ({
     const fieldsValid = useRef({});
     const requiredFields = useRef([]);
     const [isFormValid, setIsFormValid] = useState(false);
-    const { dataEngine, sympheosConfig } = context;
 
     const { show: showAlert } = useAlert(
         ({ message }) => message,
@@ -223,7 +222,10 @@ export const SelectAction = ({
 
     const runSMSCommand = async (teiId, orgUnitId, enrollmentId) => {
         try {
-            const smsCommandService = new SMSCommandService({ dataEngine, sympheosConfig }, {
+            const smsCommandService = new SMSCommandService({
+                dataEngine: context?.dataEngine,
+                sympheosConfig: context?.sympheosConfig,
+            }, {
                 orgUnitId,
                 enrollmentId,
                 teiId,
