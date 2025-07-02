@@ -1,51 +1,52 @@
 // @flow
-import React from 'react';
+import React, { useContext } from 'react';
 import { BulkActionBar } from '../../WorkingListsBase/BulkActionBar';
-import { CompleteAction } from './Actions';
+import { SelectAction } from './Actions';
 import type { Props } from './TrackedEntityBulkActions.types';
-import { DeleteEnrollmentsAction } from './Actions/DeleteEnrollmentsAction';
+import { tabsDeviceActions } from './Actions/shared/actions';
+import { Context } from './Actions/shared/Context';
 
 export const TrackedEntityBulkActionsComponent = ({
     selectedRows,
     programId,
-    stages,
     programDataWriteAccess,
     onClearSelection,
     onUpdateList,
-    removeRowsFromSelection,
 }: Props) => {
+    const context = useContext(Context);
+
+    const isBlackListed = (action) => {
+        const instanceType = context?.sympheosConfig?.instanceType;
+        return !!action.blackList?.includes?.(instanceType);
+    };
+
     const selectedRowsCount = Object.keys(selectedRows).length;
 
     if (!selectedRowsCount) {
         return null;
     }
 
+
     return (
         <BulkActionBar
             selectedRowsCount={selectedRowsCount}
             onClearSelection={onClearSelection}
+
         >
-            <CompleteAction
-                programId={programId}
-                programDataWriteAccess={programDataWriteAccess}
-                selectedRows={selectedRows}
-                stages={stages}
-                onUpdateList={onUpdateList}
-                removeRowsFromSelection={removeRowsFromSelection}
-            />
-
-            <DeleteEnrollmentsAction
-                selectedRows={selectedRows}
-                programDataWriteAccess={programDataWriteAccess}
-                programId={programId}
-                onUpdateList={onUpdateList}
-            />
-
-            {/* <DeleteTeiAction */}
-            {/*     selectedRows={selectedRows} */}
-            {/*     selectedRowsCount={selectedRowsCount} */}
-            {/*     onUpdateList={onUpdateList} */}
-            {/* /> */}
+            {tabsDeviceActions.map(action => (
+                !isBlackListed(action) ? (
+                    <SelectAction
+                        selectedRows={selectedRows}
+                        programDataWriteAccess={programDataWriteAccess}
+                        programId={programId}
+                        onActionDone={onUpdateList}
+                        key={action.id}
+                        action={action}
+                    >
+                        {action.title}
+                    </SelectAction>
+                ) : null
+            ))}
         </BulkActionBar>
     );
 };

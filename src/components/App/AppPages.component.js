@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { ViewEventPage } from 'capture-core/components/Pages/ViewEvent';
 import { MainPage } from 'capture-core/components/Pages/MainPage';
 import { SearchPage } from 'capture-core/components/Pages/Search';
@@ -11,12 +11,32 @@ import { EnrollmentEditEventPage } from 'capture-core/components/Pages/Enrollmen
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Settings } from 'sympheos-core/settings-page/Settings';
+import DashboardContainer from 'sympheos-core/dashboard/Dashboard';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+
+const ParamRoute = (props) => {
+    const { search } = useLocation();
+    const urlQuery = new URLSearchParams(search);
+    const paramsSize = [...urlQuery.keys()].length;
+
+    return paramsSize > 0 ? <Route {...props} /> : <Redirect to="/dashboard/overview" />;
+};
+
+const DashboardWrapper = () => {
+    const { dashboardKey } = useParams();
+    return (<DashboardContainer
+        dashboardKey={dashboardKey}
+    />);
+};
 
 export const AppPages = () => (
     <>
         <ReactQueryDevtools />
         <Switch>
-            <Route path="/dashboard/:dashboardId" component={() => (<div><h1>Dashboard Here</h1></div>)} />
+            <Route
+                path="/dashboard/:dashboardKey"
+                component={DashboardWrapper}
+            />
             <Route path="/settings" component={Settings} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
@@ -26,9 +46,7 @@ export const AppPages = () => (
             <Route path="/enrollmentEventNew" component={EnrollmentAddEventPage} />
             <Route path="/enrollment" component={EnrollmentPage} />
             <Route path="/:keys" component={MainPage} />
-            <Route path="/" component={MainPage}>
-                <Redirect to="/dashboard/overview" />
-            </Route>
+            <ParamRoute path="/" component={MainPage} />
         </Switch>
     </>
 );

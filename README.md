@@ -70,6 +70,9 @@ The path to the server instance can also be set by supplying a `.env.development
 
 ```
 REACT_APP_DHIS2_BASE_URL="http://localhost:8080"
+
+# DHIS2_DEVICE_GATEWAY_API - Only needed for local development
+REACT_APP_DHIS2_DEVICE_GATEWAY_API="http://your-device-gateway-api-url"
 ```
 
 ## Local Cypress testing

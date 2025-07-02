@@ -1,0 +1,30 @@
+.container {
+  flex: 1;
+  padding: 10px;
+  width: 100%;
+  flex-direction: row;
+}
+
+.formHeaderContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.formHeaderTitle {
+  font-weight: 500;
+  font-size: 16px;
+  color: #424b59;
+}
+
+.formContainer {
+  flex: 1;
+  margin-top: 20px;
+}
+
+.formButtonsContainer {
+  padding-top: 20px;
+  width: 100%;
+}

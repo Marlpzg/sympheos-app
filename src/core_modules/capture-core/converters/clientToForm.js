@@ -23,14 +23,14 @@ type RangeValue = {
 }
 
 function convertDateForEdit(rawValue: string): string {
-    return convertIsoToLocalCalendar(rawValue);
+    return convertIsoToLocalCalendar(rawValue).split('T')[0]; // Return only the date part
 }
 
 function convertDateTimeForEdit(rawValue: string): DateTimeFormValue {
     const dateTime = moment(rawValue);
     const timeString = dateTime.format('HH:mm');
     return {
-        date: convertIsoToLocalCalendar(rawValue),
+        date: convertIsoToLocalCalendar(rawValue).split('T')[0],
         time: timeString,
     };
 }
@@ -100,6 +100,7 @@ export function convertValue(value: any, type: $Keys<typeof dataElementTypes>) {
     if (!value && value !== 0 && value !== false) {
         return value;
     }
+
     // $FlowFixMe dataElementTypes flow error
     return (valueConvertersForType[type] ? valueConvertersForType[type](value) : value);
 }
