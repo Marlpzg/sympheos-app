@@ -93,6 +93,11 @@ export const tabsDeviceActions: TabsDeviceActions = [
                 label: i18n.t('Update Band Priority'),
                 type: actionTypes.updates.updateBandPriority,
             },
+            {
+                label: i18n.t('Overwrite Status'),
+                type: actionTypes.updates.overwriteStatus,
+            },
+
         ],
     },
     {
