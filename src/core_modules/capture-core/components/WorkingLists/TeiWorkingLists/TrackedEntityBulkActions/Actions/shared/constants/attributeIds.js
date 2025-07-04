@@ -28,6 +28,7 @@ export const ATTRIBUTE_IDS = {
     DV_VIRTUAL_GATEWAY: 'EofngtG9vPc',
     DV_APN: 'ouA9SUIws2y',
     DV_REQUESTED_PROFILE: 'k2THsaeHpDq',
+    DV_REQUESTED_STATUS: 'u68L3OwMhqV',
     DV_LAST_SEEN: 'Zss3gfqukHT',
 };
 

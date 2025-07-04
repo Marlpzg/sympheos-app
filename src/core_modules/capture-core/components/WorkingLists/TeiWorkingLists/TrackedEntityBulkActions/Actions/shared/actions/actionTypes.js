@@ -10,6 +10,7 @@ export const actionTypes = {
         updateProfile: 'updateProfile',
         overwriteProfile: 'overwriteProfile',
         overwriteFirmware: 'overwriteFirmware',
+        overwriteStatus: 'overwriteStatus',
         updateFirmware: 'updateFirmware',
         clearRequestedFirmware: 'clearRequestedFirmware',
         updateAPN: 'updateAPN',

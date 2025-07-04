@@ -20,7 +20,7 @@ import { FormActionModal } from './ FormActionModal';
 
 
 type Props = {
-    selectedRows: { [id: string]: boolean },
+    selectedRows: string[],
     onActionDone: () => void,
     action: TabDeviceAction,
     programId: string,
@@ -48,7 +48,6 @@ export const SelectAction = ({
     const fieldsValid = useRef({});
     const requiredFields = useRef([]);
     const [isFormValid, setIsFormValid] = useState(false);
-    const { dataEngine, sympheosConfig } = context;
 
     const { show: showAlert } = useAlert(
         ({ message }) => message,
@@ -90,13 +89,13 @@ export const SelectAction = ({
                             program,
                         ]
                     `.replace(/\s+/g, ''), // eliminamos espacios innecesarios
-                    [filterQueryParam]: Object.keys(selectedRows).join(supportForFeature ? ',' : ';'),
+                    [filterQueryParam]: selectedRows.join(supportForFeature ? ',' : ';'),
                     pageSize: 100,
                 };
             },
         },
         {
-            enabled: Object.keys(selectedRows).length > 0,
+            enabled: selectedRows.length > 0,
             select: (data: any) => {
                 const apiTrackedEntities = handleAPIResponse(REQUESTED_ENTITIES.trackedEntities, data);
                 return apiTrackedEntities;
@@ -223,7 +222,10 @@ export const SelectAction = ({
 
     const runSMSCommand = async (teiId, orgUnitId, enrollmentId) => {
         try {
-            const smsCommandService = new SMSCommandService({ dataEngine, sympheosConfig }, {
+            const smsCommandService = new SMSCommandService({
+                dataEngine: context?.dataEngine,
+                sympheosConfig: context?.sympheosConfig,
+            }, {
                 orgUnitId,
                 enrollmentId,
                 teiId,
@@ -255,21 +257,19 @@ export const SelectAction = ({
             setShowLoading(true);
 
             try {
-                const promises = Object.keys(selectedRows)
-                    .filter(teiId => selectedRows[teiId])
-                    .map(async (teiId) => {
-                        const { orgUnit: orgUnitId, enrollments } =
+                const promises = selectedRows.map(async (teiId) => {
+                    const { orgUnit: orgUnitId, enrollments } =
                             trackedEntities?.find(trackedEntity => trackedEntity.trackedEntity === teiId) ?? {};
-                        const enrollmentId = enrollments?.[0]?.enrollment;
+                    const enrollmentId = enrollments?.[0]?.enrollment;
 
-                        if (updateTEA) {
-                            await runUpdateTEA(teiId, orgUnitId);
-                        }
+                    if (updateTEA) {
+                        await runUpdateTEA(teiId, orgUnitId);
+                    }
 
-                        if (smsCommand) {
-                            await runSMSCommand(teiId, orgUnitId, enrollmentId);
-                        }
-                    });
+                    if (smsCommand) {
+                        await runSMSCommand(teiId, orgUnitId, enrollmentId);
+                    }
+                });
 
                 await Promise.all(promises);
                 showSuccessAlert();

@@ -1,27 +1,44 @@
 // @flow
-import React from 'react';
+import log from 'loglevel';
+import React, { useEffect, useState } from 'react';
 import { BulkActionBar } from '../../WorkingListsBase/BulkActionBar';
-import { CompleteAction, DeleteAction } from './Actions';
 import type { ProgramStage } from '../../../../metaData';
+import { SelectAction } from '../../TeiWorkingLists/TrackedEntityBulkActions/Actions';
+import { tabsDeviceActions } from '../../TeiWorkingLists/TrackedEntityBulkActions/Actions/shared/actions';
+import { useTrackedEntitiesFromEvents } from './hooks/useTrackedEntitiesFromEvents';
 
 type Props = {|
     selectedRows: { [key: string]: boolean },
     onClearSelection: () => void,
     stage: ProgramStage,
     onUpdateList: (disableClearSelection?: boolean) => void,
-    removeRowsFromSelection: (rows: Array<string>) => void,
 |}
 
 export const EventBulkActions = ({
     selectedRows,
     stage,
     onClearSelection,
-    removeRowsFromSelection,
     onUpdateList,
 }: Props) => {
     const selectedRowsCount = Object.keys(selectedRows).length;
+    const [eventIdList, setEventIdList] = useState([]);
 
-    if (!selectedRowsCount) {
+    // get all the tei related the events removing duplicates
+    useEffect(() => {
+        const events = [...new Set(Object.keys(selectedRows).filter(row => selectedRows[row]))];
+        setEventIdList(events);
+    }, [selectedRows]);
+
+    const { teis, loading, error, refetch: refetchTeis } = useTrackedEntitiesFromEvents(eventIdList);
+
+    useEffect(() => {
+        if (eventIdList.length <= 0) {
+            return;
+        }
+        refetchTeis({ eventIds: eventIdList }).then(data => log.info(data));
+    }, [eventIdList, refetchTeis]);
+
+    if (!selectedRowsCount || error || loading) {
         return null;
     }
 
@@ -30,18 +47,20 @@ export const EventBulkActions = ({
             selectedRowsCount={selectedRowsCount}
             onClearSelection={onClearSelection}
         >
-            <CompleteAction
-                selectedRows={selectedRows}
-                disabled={!stage.access.data.write}
-                onUpdateList={onUpdateList}
-                removeRowsFromSelection={removeRowsFromSelection}
-            />
-
-            <DeleteAction
-                selectedRows={selectedRows}
-                disabled={!stage.access.data.write}
-                onUpdateList={onUpdateList}
-            />
+            {tabsDeviceActions.map(action => (
+                selectedRowsCount > 0 ? (
+                    <SelectAction
+                        selectedRows={teis}
+                        programDataWriteAccess={null}
+                        programId={stage.id}
+                        onActionDone={onUpdateList}
+                        key={action.id}
+                        action={action}
+                    >
+                        {action.title}
+                    </SelectAction>
+                ) : null
+            ))}
         </BulkActionBar>
     );
 };

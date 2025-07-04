@@ -68,12 +68,27 @@ export const TrackedEntityBulkActions = ({
             log.error(errorCreator('Program stage not found')({ programStageId, stages }));
             throw new Error('Program stage not found');
         }
+        const { removeRowsFromSelection, ...eventBulkProps } = passOnProps;
 
         return (
-            <EventBulkActions
-                stage={stage}
-                {...passOnProps}
-            />
+            <Context.Provider
+                value={{
+                    dataEngine,
+                    sympheosConfig: {
+                        ...sympheosConfig,
+                        isAccountInstance,
+                        instanceType,
+                    // ...FORCE_INSTANCE // To Force instance type. Comment this line for production or if you do not wish to force it
+                    },
+                    onHandleUpdate,
+                }}
+            >
+                <EventBulkActions
+                    stage={stage}
+                    {...eventBulkProps}
+                />
+            </Context.Provider >
+
         );
     }
 
@@ -85,7 +100,7 @@ export const TrackedEntityBulkActions = ({
                     ...sympheosConfig,
                     isAccountInstance,
                     instanceType,
-                    // ...FORCE_INSTANCE // To Force instance type. Comment this line for production or if you do not wish to force it
+                // ...FORCE_INSTANCE // To Force instance type. Comment this line for production or if you do not wish to force it
                 },
                 onHandleUpdate,
             }}
