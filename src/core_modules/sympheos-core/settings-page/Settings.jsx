@@ -170,6 +170,7 @@ export const Settings = () => {
             onClick={handleSubmit}
             icon={<IconSave24 />}
             disabled={saveDisabled || loadingOS}
+            loading={storeMutation.loading}
         >{i18n.t('Save changes')}</Button>
     </div>);
 };
