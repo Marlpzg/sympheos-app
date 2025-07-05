@@ -1,6 +1,8 @@
+// @flow
 import React, { useState, useEffect } from 'react';
 import { Button, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
 import { useDataQuery } from '@dhis2/app-runtime';
+import i18n from '@dhis2/d2-i18n';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 import { useDataStore } from '../../../hooks/useDataStore';
 
@@ -14,7 +16,22 @@ const optionSetsQuery = {
     },
 };
 
-const getOptions = (mappedOS, key) => mappedOS[key]?.map(option => (
+type IdentifiableObject = {
+    id: string,
+    name: string,
+    code?: string,
+};
+
+type MappedOSType = {
+    [key: string]: IdentifiableObject[],
+};
+
+const initialOSMap: ?MappedOSType = null;
+
+const getOptions = (
+    mappedOS: MappedOSType,
+    key: string,
+) => mappedOS[key]?.map((option: IdentifiableObject) => (
     <SingleSelectOption
         key={option.id}
         value={option.id}
@@ -42,7 +59,7 @@ export const Settings = () => {
     } = useDataQuery(optionSetsQuery, { lazy: true });
     const { showSnackbar } = useSnackbar();
 
-    const [mappedOS, setMappedOS] = useState(undefined);
+    const [mappedOS, setMappedOS] = useState(initialOSMap);
     const [formData, setFormData] = useState({
         authKey: '',
         instanceType: '',
@@ -80,7 +97,13 @@ export const Settings = () => {
             setFormData(storeQuery.data.results.gatewayConnectivity);
         }
 
-        setMappedOS(dataOS.results.optionSets.reduce((acc, cur) => {
+        setMappedOS(dataOS.results.optionSets.reduce((
+            acc: MappedOSType,
+            cur: {
+                id: string,
+                options: IdentifiableObject[]
+            }
+        ) => {
             acc[cur.id] = cur.options;
             return acc;
         }, {}));
@@ -105,7 +128,7 @@ export const Settings = () => {
     >
         <SingleSelectField
             inputWidth="50svw"
-            label="Instance Type"
+            label={i18n.t('Instance Type')}
             selected={formData.instanceType}
             loading={loadingOS || storeQuery.loading}
             onChange={(event) => {
@@ -123,14 +146,14 @@ export const Settings = () => {
                 setFormData({ ...formData, authKey: event.value });
                 setSaveDisabled(false);
             }}
-            placeholder="Auth Key"
+            placeholder={i18n.t('Auth Key')}
             label="Auth Key"
             inputWidth="50svw"
         />
         {formData.instanceType === 'fv7AZKEjynM' &&
             <SingleSelectField
                 inputWidth="50svw"
-                label="Default Profile"
+                label={i18n.t('Default Profile')}
                 selected={formData.defaultProfile}
                 onChange={(event) => {
                     setFormData({ ...formData, defaultProfile: event.selected });
@@ -147,7 +170,7 @@ export const Settings = () => {
             onClick={handleSubmit}
             icon={<IconSave24 />}
             disabled={saveDisabled || loadingOS}
-        >Save Changes</Button>
+        >{i18n.t('Save changes')}</Button>
     </div>);
 };
 
