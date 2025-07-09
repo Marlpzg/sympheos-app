@@ -4,6 +4,10 @@ import { Button, IconSave24, InputField, SingleSelectField, SingleSelectOption }
 import { useDataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
+import PluginsRestorer from 'sympheos-core/settings-page/PluginsRestorer';
+
+import 'sympheos-core/settings-page/settings-page.css';
+
 import { useDataStore } from '../../../hooks/useDataStore';
 
 const optionSetsQuery = {
@@ -38,17 +42,6 @@ const getOptions = (
         label={option.name}
     />
 ));
-
-const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '1em',
-    height: '100%',
-    width: '100%',
-    padding: '2em',
-};
 
 export const Settings = () => {
     const { storeMutation, storeQuery } = useDataStore({ key: 'settings', lazyGet: false });
@@ -123,55 +116,58 @@ export const Settings = () => {
         }
     }, [formData.instanceType]);
 
-    return (<div
-        style={containerStyle}
-    >
-        <SingleSelectField
-            inputWidth="50svw"
-            label={i18n.t('Instance Type')}
-            selected={formData.instanceType}
-            loading={loadingOS || storeQuery.loading}
-            onChange={(event) => {
-                setFormData({ ...formData, instanceType: event.selected });
-                setSaveDisabled(false);
-            }}
-        >
-            {mappedOS && storeQuery.data &&
-                getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
-            }
-        </SingleSelectField>
-        <InputField
-            value={formData.authKey}
-            onChange={(event) => {
-                setFormData({ ...formData, authKey: event.value });
-                setSaveDisabled(false);
-            }}
-            placeholder={i18n.t('Auth Key')}
-            label="Auth Key"
-            inputWidth="50svw"
-        />
-        {formData.instanceType === 'fv7AZKEjynM' &&
+    return (<div className="main-container">
+        <div className="restore-container">
+            <PluginsRestorer />
+        </div>
+        <div className="settings-container">
             <SingleSelectField
                 inputWidth="50svw"
-                label={i18n.t('Default Profile')}
-                selected={formData.defaultProfile}
+                label={i18n.t('Instance Type')}
+                selected={formData.instanceType}
+                loading={loadingOS || storeQuery.loading}
                 onChange={(event) => {
-                    setFormData({ ...formData, defaultProfile: event.selected });
+                    setFormData({ ...formData, instanceType: event.selected });
                     setSaveDisabled(false);
                 }}
             >
                 {mappedOS && storeQuery.data &&
-                    getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+                    getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
                 }
             </SingleSelectField>
-        }
-        <Button
-            primary
-            onClick={handleSubmit}
-            icon={<IconSave24 />}
-            disabled={saveDisabled || loadingOS}
-            loading={storeMutation.loading}
-        >{i18n.t('Save changes')}</Button>
+            <InputField
+                value={formData.authKey}
+                onChange={(event) => {
+                    setFormData({ ...formData, authKey: event.value });
+                    setSaveDisabled(false);
+                }}
+                placeholder={i18n.t('Auth Key')}
+                label="Auth Key"
+                inputWidth="50svw"
+            />
+            {formData.instanceType === 'fv7AZKEjynM' &&
+                <SingleSelectField
+                    inputWidth="50svw"
+                    label={i18n.t('Default Profile')}
+                    selected={formData.defaultProfile}
+                    onChange={(event) => {
+                        setFormData({ ...formData, defaultProfile: event.selected });
+                        setSaveDisabled(false);
+                    }}
+                >
+                    {mappedOS && storeQuery.data &&
+                        getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+                    }
+                </SingleSelectField>
+            }
+            <Button
+                primary
+                onClick={handleSubmit}
+                icon={<IconSave24 />}
+                disabled={saveDisabled || loadingOS}
+                loading={storeMutation.loading}
+            >{i18n.t('Save changes')}</Button>
+        </div>
     </div>);
 };
 
