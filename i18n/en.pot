@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-07-05T05:24:32.056Z\n"
-"PO-Revision-Date: 2025-07-05T05:24:32.056Z\n"
+"POT-Creation-Date: 2025-07-08T23:13:32.118Z\n"
+"PO-Revision-Date: 2025-07-08T23:13:32.118Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2116,8 +2116,17 @@ msgstr "Load dashboard failed"
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "This dashboard could not be loaded. Please try again later."
 
-msgid "Restore plugins configuration"
-msgstr "Restore plugins configuration"
+msgid "No Programs available."
+msgstr "No Programs available."
+
+msgid "Plugins configuration restored successfully."
+msgstr "Plugins configuration restored successfully."
+
+msgid "Error updating Data Store."
+msgstr "Error updating Data Store."
+
+msgid "Overwrite plugins configuration for all Programs"
+msgstr "Overwrite plugins configuration for all Programs"
 
 msgid "Instance Type"
 msgstr "Instance Type"
