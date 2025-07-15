@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-07-08T23:13:32.118Z\n"
-"PO-Revision-Date: 2025-07-08T23:13:32.118Z\n"
+"POT-Creation-Date: 2025-07-15T21:45:32.020Z\n"
+"PO-Revision-Date: 2025-07-15T21:45:32.021Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2128,11 +2128,17 @@ msgstr "Error updating Data Store."
 msgid "Overwrite plugins configuration for all Programs"
 msgstr "Overwrite plugins configuration for all Programs"
 
+msgid "Gateway Connectivity Settings"
+msgstr "Gateway Connectivity Settings"
+
 msgid "Instance Type"
 msgstr "Instance Type"
 
 msgid "Default Profile"
 msgstr "Default Profile"
+
+msgid "Plugin Settings"
+msgstr "Plugin Settings"
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

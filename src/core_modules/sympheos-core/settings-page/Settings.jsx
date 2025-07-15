@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, useEffect } from 'react';
-import { Button, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
+import { Button, Card, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
 import { useDataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
@@ -116,59 +116,65 @@ export const Settings = () => {
         }
     }, [formData.instanceType]);
 
-    return (<div className="main-container">
-        <div className="restore-container">
-            <PluginsRestorer />
-        </div>
-        <div className="settings-container">
-            <SingleSelectField
-                inputWidth="50svw"
-                label={i18n.t('Instance Type')}
-                selected={formData.instanceType}
-                loading={loadingOS || storeQuery.loading}
-                onChange={(event) => {
-                    setFormData({ ...formData, instanceType: event.selected });
-                    setSaveDisabled(false);
-                }}
-            >
-                {mappedOS && storeQuery.data &&
-                    getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
-                }
-            </SingleSelectField>
-            <InputField
-                value={formData.authKey}
-                onChange={(event) => {
-                    setFormData({ ...formData, authKey: event.value });
-                    setSaveDisabled(false);
-                }}
-                placeholder={i18n.t('Auth Key')}
-                label="Auth Key"
-                inputWidth="50svw"
-            />
-            {formData.instanceType === 'fv7AZKEjynM' &&
-                <SingleSelectField
-                    inputWidth="50svw"
-                    label={i18n.t('Default Profile')}
-                    selected={formData.defaultProfile}
-                    onChange={(event) => {
-                        setFormData({ ...formData, defaultProfile: event.selected });
-                        setSaveDisabled(false);
-                    }}
-                >
-                    {mappedOS && storeQuery.data &&
-                        getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+    return (
+
+        <div className="main-container">
+            <Card>
+                <div className="settings-container">
+                    <h2>{i18n.t('Gateway Connectivity Settings')}</h2>
+                    <SingleSelectField
+                        inputWidth="100%"
+                        label={i18n.t('Instance Type')}
+                        selected={formData.instanceType}
+                        loading={loadingOS || storeQuery.loading}
+                        onChange={(event) => {
+                            setFormData({ ...formData, instanceType: event.selected });
+                            setSaveDisabled(false);
+                        }}
+                    >
+                        {mappedOS && storeQuery.data &&
+                            getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
+                        }
+                    </SingleSelectField>
+                    <InputField
+                        value={formData.authKey}
+                        onChange={(event) => {
+                            setFormData({ ...formData, authKey: event.value });
+                            setSaveDisabled(false);
+                        }}
+                        placeholder={i18n.t('Auth Key')}
+                        label="Auth Key"
+                        inputWidth="100%"
+                    />
+                    {formData.instanceType === 'fv7AZKEjynM' &&
+                        <SingleSelectField
+                            inputWidth="100%"
+                            label={i18n.t('Default Profile')}
+                            selected={formData.defaultProfile}
+                            onChange={(event) => {
+                                setFormData({ ...formData, defaultProfile: event.selected });
+                                setSaveDisabled(false);
+                            }}
+                        >
+                            {mappedOS && storeQuery.data &&
+                                getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+                            }
+                        </SingleSelectField>
                     }
-                </SingleSelectField>
-            }
-            <Button
-                primary
-                onClick={handleSubmit}
-                icon={<IconSave24 />}
-                disabled={saveDisabled || loadingOS}
-                loading={storeMutation.loading}
-            >{i18n.t('Save changes')}</Button>
-        </div>
-    </div>);
+                    <Button
+                        primary
+                        onClick={handleSubmit}
+                        icon={<IconSave24 />}
+                        disabled={saveDisabled || loadingOS}
+                        loading={storeMutation.loading}
+                    >{i18n.t('Save changes')}</Button>
+
+                    <h2>{i18n.t('Plugin Settings')}</h2>
+                    <PluginsRestorer />
+                </div>
+            </Card>
+        </div >
+    );
 };
 
 export default Settings;
