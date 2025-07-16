@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-07-15T21:45:32.020Z\n"
-"PO-Revision-Date: 2025-07-15T21:45:32.021Z\n"
+"POT-Creation-Date: 2025-07-15T22:23:24.440Z\n"
+"PO-Revision-Date: 2025-07-15T22:23:24.441Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2124,6 +2124,21 @@ msgstr "Plugins configuration restored successfully."
 
 msgid "Error updating Data Store."
 msgstr "Error updating Data Store."
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Programs? This action cannot be undone and will remove the current plugins "
+"configuration."
+msgstr ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Programs? This action cannot be undone and will remove the current plugins "
+"configuration."
+
+msgid "Continue"
+msgstr "Continue"
 
 msgid "Overwrite plugins configuration for all Programs"
 msgstr "Overwrite plugins configuration for all Programs"
