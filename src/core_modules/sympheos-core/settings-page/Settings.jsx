@@ -9,6 +9,7 @@ import PluginsRestorer from 'sympheos-core/settings-page/PluginsRestorer';
 import 'sympheos-core/settings-page/settings-page.css';
 
 import { useDataStore } from '../../../hooks/useDataStore';
+import { INSTANCE_TYPE_ID } from 'capture-core/components/WorkingLists/TeiWorkingLists/TrackedEntityBulkActions/Actions/shared/constants';
 
 const optionSetsQuery = {
     results: {
@@ -143,10 +144,10 @@ export const Settings = () => {
                             setSaveDisabled(false);
                         }}
                         placeholder={i18n.t('Auth Key')}
-                        label="Auth Key"
+                        label={i18n.t('Auth Key')}
                         inputWidth="100%"
                     />
-                    {formData.instanceType === 'fv7AZKEjynM' &&
+                    {formData.instanceType === INSTANCE_TYPE_ID.ACCOUNT &&
                         <SingleSelectField
                             inputWidth="100%"
                             label={i18n.t('Default Profile')}
