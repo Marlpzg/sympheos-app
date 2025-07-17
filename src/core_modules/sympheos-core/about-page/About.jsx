@@ -56,7 +56,7 @@ export const About = () => {
         }
 
         const plugins = appsData.results
-            .filter(app => app.plugin_launch_path)
+            .filter(app => app.plugin_launch_path && !app.launch_path)
             .map(app => ({
                 id: app.key,
                 name: app.name,
@@ -84,7 +84,7 @@ export const About = () => {
                     style={{
                         marginBottom: '1em',
                     }}
-                >{i18n.t('Sympheos Dependencies')}</h2>
+                >{i18n.t('Sympheos Plugins and Dependencies')}</h2>
                 <DataTable width="65svw">
                     <TableHead>
                         <DataTableRow>
