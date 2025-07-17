@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-07-16T06:00:50.852Z\n"
-"PO-Revision-Date: 2025-07-16T06:00:50.852Z\n"
+"POT-Creation-Date: 2025-07-17T05:04:30.331Z\n"
+"PO-Revision-Date: 2025-07-17T05:04:30.331Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2112,6 +2112,27 @@ msgstr "Area on map saved"
 
 msgid "About"
 msgstr "About"
+
+msgid "DHIS2 Core"
+msgstr "DHIS2 Core"
+
+msgid "Sympheos App"
+msgstr "Sympheos App"
+
+msgid "Device Gateway API"
+msgstr "Device Gateway API"
+
+msgid "Sympheos Dependencies"
+msgstr "Sympheos Dependencies"
+
+msgid "Component"
+msgstr "Component"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Details"
+msgstr "Details"
 
 msgid "Load dashboard failed"
 msgstr "Load dashboard failed"
