@@ -44,6 +44,7 @@ export const About = () => {
                 id: 'sympheos-app',
                 name: i18n.t('Sympheos App'),
                 version: process.env.REACT_APP_VERSION,
+                details: '',
             },
         ];
 
@@ -52,6 +53,7 @@ export const About = () => {
                 id: 'device-gateway',
                 name: i18n.t('Device Gateway API'),
                 version: gatewayInfo.version,
+                details: '',
             });
         }
 
