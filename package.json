@@ -128,7 +128,7 @@
         "jsdoc-babel": "^0.5.0",
         "jsdoc-export-default-interop": "^0.3.1",
         "redux-devtools-extension": "^2.13.9",
-        "semantic-release": "^24.2.7",
+        "semantic-release": "^22",
         "wait-on": "^8.0.1"
     },
     "resolutions": {
